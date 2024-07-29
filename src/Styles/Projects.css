@@ -1,0 +1,133 @@
+#carrossel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+
+  min-width: 50%;
+  max-width: 90%;
+  height: auto;
+  padding: 50px 15px;
+  margin: 0 auto;
+
+  border-radius: 40px;
+  background-color: var(--color-bg-dark);
+}
+
+article{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 200px;
+  max-width: 280px;
+  min-height: 400px;
+  max-height: 405px;
+  
+  background-color: var(--color-6);
+  border: var(--color-5) 2px solid;
+  border-radius: 30px;
+  transition: 0.8s ease;
+}
+
+article figure{
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+
+  background: url("https://i.scdn.co/image/ab67616d0000b2736740a467f53a5ed61c67c3df");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  
+  border-radius: 30px 30px 0 0;
+  
+  transition: 800ms 0.1s ease;
+}
+
+article div{
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  max-height: 205px;
+  background-color: var(--color-bg-light);
+  border-radius: 0 0 30px 30px;
+  padding: 30px 0;
+}
+
+article div h2{
+  text-align: start;
+  color: var(--color-bg);
+  padding-left: 30px;
+  transition: 300ms 0.1s ease;
+}
+
+article div p{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 1;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  text-align: start;
+  color: var(--color-bg);
+  padding: 30px;
+  transition: 300ms 0.1s ease;
+}
+
+article:hover{
+  box-shadow: 0 10px 0 5px var(--color-3);
+  border: 2px solid var(--color-3);
+  cursor: pointer;
+  > figure{
+      background-size: 105%;
+  };
+  > div h2, div p{
+    color: white;
+  }
+}
+
+.product{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 215px;
+  background-color: var(--color-bg);
+  padding: 15px;
+  border-radius: 15px;
+  border: var(--color-2) 2px solid;
+  font-family: 'Song Myung', serif;    
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+
+.product:hover{
+  cursor: pointer;
+  box-shadow: var(--color-1) 0px 10px 0px 5px;
+}
+
+.preview{
+  width: 85%;
+  height: 180px;
+  object-fit: contain;
+  background-color: white;
+  border-radius: 15px;
+  margin: 10px 0 20px;
+}
+
+.product h3:nth-child(3){
+  font-size: var(--fs-medium-1);
+}
+
+.product button{
+  margin-top: 30px;
+  width: 120px;
+  background-color: var(--cor-1);
+  color: var(--cor-BG1);
+  font-family: 'Libre Baskerville';
+  font-size: 16px;
+  padding: 10px;
+}
+

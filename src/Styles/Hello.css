@@ -1,0 +1,73 @@
+#Hello{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+  padding: 10vh 0;
+  margin: 0 auto;
+}
+
+#paragraph{
+  width: 70%;
+}
+
+#paragraph h1 {
+  font-family: "League Spartan", sans-serif;
+  text-transform: uppercase;
+  font-size: 90px;
+  color: #fff;
+}
+
+#paragraph h2, h3 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 45px;
+  color: var(--color-1);
+}
+
+#paragraph h3 {
+  font-size: 30px;
+  color: var(--color-2);
+  margin-bottom: 15px;
+}
+
+#paragraph p {
+  font-family: lato, sans-serif;
+  font-weight: 700;
+  text-align: justify;
+  text-transform: uppercase;
+  font-size: 25px;
+  color: var(--color-2); 
+
+  margin: 30px 0 0 70px;
+}
+
+#perfil{
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 300px;
+  position: relative;
+}
+
+#perfil figure{
+  background: url(../assets/Lucas.jpg);
+  background-position: center -40px;
+  background-size: 200%;
+  width: 325px;
+  height: 325px;
+
+  border-radius: 50px;
+}
+
+#perfil #square{
+  background-color: var(--color-1);
+  width: 225px;
+  height: 225px;
+  border-radius: 50px;
+  position: absolute;
+  top: 130px;
+  right: 45px;
+  z-index: -1;
+}
