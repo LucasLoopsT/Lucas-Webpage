@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../Styles/Hello.css'
+import '../styles/Hello.css'
 import Lucas from '../assets/Lucas.png'
 function Hello
   () {
