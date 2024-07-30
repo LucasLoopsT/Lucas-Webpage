@@ -27,7 +27,7 @@ nav{
     border-radius: 100px;
 }
 
-img{
+header nav img{
     width: 200px;
     position: absolute;
     left: 5%;
@@ -35,18 +35,18 @@ img{
     transition: all 0.2s ease;
 }
 
-img:hover{
+header nav img:hover{
     width: 210px;
     cursor: pointer;
 }
 
-ul{
+header nav ul{
     width: 300px;
     display: flex;
     justify-content: space-between;
 }
 
-li{
+header nav ul li{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 900;
@@ -59,7 +59,7 @@ li{
     transition: all 0.2s ease;
 }
 
-li:hover{
+header nav ul li:hover{
     color: var(--color-2);
     border-bottom: 2px solid var(--color-2);
 }

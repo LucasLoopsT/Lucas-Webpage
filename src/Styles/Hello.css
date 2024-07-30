@@ -40,7 +40,7 @@
   font-size: 25px;
   color: var(--color-2); 
 
-  margin: 30px 0 0 70px;
+  margin: 30px 0 0;
 }
 
 #perfil{
@@ -51,10 +51,7 @@
   position: relative;
 }
 
-#perfil figure{
-  background: url(../assets/Lucas.jpg);
-  background-position: center -40px;
-  background-size: 200%;
+#perfil img{
   width: 325px;
   height: 325px;
 
@@ -68,6 +65,6 @@
   border-radius: 50px;
   position: absolute;
   top: 130px;
-  right: 45px;
+  right: 35px;
   z-index: -1;
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../Styles/Hello.css'
-
+import Lucas from '../assets/Lucas.png'
 function Hello
   () {
   const [count, setCount] = useState(0)
@@ -15,7 +15,7 @@ function Hello
           <p>A proactive person, always willing to learn and practice new technologies, also working in some awesome projects, which i want to share with you.</p>
         </div>
         <div id='perfil'>
-          <figure></figure>
+          <img src={Lucas} alt="Lucas Lopes"/>
           <div id="square"></div>
         </div>
       </section>
