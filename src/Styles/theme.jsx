@@ -5,10 +5,10 @@ export default {
         bg_dark: "#101010",  
         bg_dark_70: "#101010b0",  
         
-        1:"#12FF65",  
-        2:"#AFFFCA",  
-        3:"#fff",  
-        4:"#fff",  
-        5:"#fff",  
+        color_1:"#12FF65",  
+        color_2:"#AFFFCA",  
+        color_3:"#fff",  
+        color_4:"#fff",  
+        color_5:"#fff",  
     }
 }
