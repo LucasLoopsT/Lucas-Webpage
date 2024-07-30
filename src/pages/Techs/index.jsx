@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import '../styles/Techs.css'
+import { Container } from './styles'
 
 function Techs
   () {
   const [count, setCount] = useState(0)
   return (
-    <>
+    <Container>
       <section id="Techs">
         <ul id="Icons">
           <li><img src="https://skillicons.dev/icons?i=html" alt="" /></li>
@@ -20,7 +20,7 @@ function Techs
           <li><img src="https://skillicons.dev/icons?i=mongo" alt="" /></li>
         </ul>
       </section>
-    </>
+    </Container>
   )
 }
 
