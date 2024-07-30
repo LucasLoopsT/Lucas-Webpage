@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import '../styles/Projects.css'
+import { Container } from './styles'
 
 function Projects() {
   const [count, setCount] = useState(0)
   return (
-    <>
-      <section id="carrossel">
+    <Container>
+      <section id="Projects">
         <article>
           <figure></figure>
           <div>
@@ -30,7 +30,7 @@ function Projects() {
           </div>
         </article>
       </section>
-    </>
+    </Container>
   )
 }
 
