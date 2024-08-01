@@ -134,13 +134,48 @@ export const Projects = styled.section`
     gap: 25px;
 
     min-width: 340px;
+    width: 90%;
     max-width: 1300px;
-    height: auto;
+    min-height: auto;
+    height: 600px;
+    max-height: 600px;
     padding: 50px 15px;
     margin: 0 auto;
 
     border-radius: 40px;
     background-color: ${({theme}) => theme.COLORS.bg_dark};
+
+    .swiper {
+        height: 100%; 
+    }
+    
+    // Arrows
+    .swiper-button-prev, .swiper-button-next {
+        color: ${({theme}) => theme.COLORS.color_1};
+        transition: all 200ms ease;
+    }
+
+    .swiper-pagination{
+        top:unset;
+        bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+        background: ${({theme}) => theme.COLORS.color_1};
+        transition: all 200ms ease;
+    }
+
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover,
+    .swiper-pagination-bullet:hover {
+        transform: scale(130%);
+    }
+
+    .Card_flex{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `
 
 export const ViewMoreButton = styled.button`

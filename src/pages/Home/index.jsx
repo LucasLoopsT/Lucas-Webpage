@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, ViewMoreButton } from './styles';
 import Header from '../../components/Header/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
 // import Footer from '../../components/Footer/index.jsx';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import Lucas from '../../assets/Lucas.png';
 
+
+
 function Home() {
-  // Lista de projetos (exemplo, substitua pelos seus dados reais)
+  // Lista de projetos (futuramente dados virão de um banco de dados)
   const allProjects = [
     {
       imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio",
+      projectName: "Portfolio 1",
       description: "Vite + React Single Page Application",
     },
     {
@@ -40,18 +44,33 @@ function Home() {
       projectName: "Portfolio 6",
       description: "Vite + React Single Page Application",
     },
+
   ];
 
-  // Estado para controlar se todos os projetos devem ser mostrados
-  const [showAllProjects, setShowAllProjects] = useState(false);
+  // Reponsive Slider Config
+  const [slidePerView, setSlidePerView] = useState(3)
 
-  // Função para alternar o estado de exibição dos projetos
-  const handleViewMore = () => {
-    setShowAllProjects(prev => !prev);
-  };
+  useEffect(() => {
 
-  // Determina os projetos a serem exibidos
-  const displayedProjects = showAllProjects ? allProjects : allProjects.slice(0, 3);
+    function handleRecize() {
+      // Projects Display
+      if (window.innerWidth < 2000) {
+        setSlidePerView(3)
+      }
+      if (window.innerWidth < 1000) {
+        setSlidePerView(2)
+      } if (window.innerWidth < 700) {
+        setSlidePerView(1)
+      }
+    }
+
+    handleRecize()
+
+    window.addEventListener("resize", handleRecize)
+    return () => {
+      window.removeEventListener("resize", handleRecize)
+    }
+  }, [])
 
   return (
     <Container>
@@ -79,31 +98,35 @@ function Home() {
           <TechIcons imgURL={"https://skillicons.dev/icons?i=react"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=vite"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=styledcomponents"} alt={"HTML"} />
+          <TechIcons imgURL={"https://skillicons.dev/icons?i=cs"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=nodejs"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=express"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=mysql"} alt={"HTML"} />
           <TechIcons imgURL={"https://skillicons.dev/icons?i=mongo"} alt={"HTML"} />
+          <TechIcons imgURL={"https://skillicons.dev/icons?i=github"} alt={"HTML"} />
+          <TechIcons imgURL={"https://skillicons.dev/icons?i=git"} alt={"HTML"} />
         </ul>
       </Tech>
 
       <Projects>
-        {displayedProjects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            imgURL={project.imgURL}
-            projectName={project.projectName}
-            description={project.description}
-          />
-        ))}
-
-        {allProjects.length > 3 && (
-          <ViewMoreButton onClick={handleViewMore}>
-            {showAllProjects ? "VER MENOS" : "VER MAIS"}
-          </ViewMoreButton>
-        )}
+        <Swiper
+          slidesPerView={slidePerView}
+          pagination={{ clickable: true }}
+          navigation
+        >
+          {allProjects.map((project) => (
+            <SwiperSlide key={project.id} className='Card_flex'>
+              <ProjectCard
+                imgURL={project.imgURL}
+                projectName={project.projectName}
+                description={project.description}
+                alt={project.projectName}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Projects>
     </Container>
-
   );
 }
 
