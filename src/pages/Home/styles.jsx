@@ -149,7 +149,15 @@ export const Projects = styled.section`
         height: 100%; 
     }
     
-    // Arrows
+    .swiper-button-next {
+        right: 0;
+    }
+
+
+    .swiper-button-prev {
+        left: 0;
+    }
+
     .swiper-button-prev, .swiper-button-next {
         color: ${({theme}) => theme.COLORS.color_1};
         transition: all 200ms ease;

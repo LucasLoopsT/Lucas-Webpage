@@ -69,7 +69,7 @@ export const ImageContainer = styled.div`
     min-width: 100%;
     min-height: 200px;
     max-height: 200px;
-    background: url(${props => props.imgURL});
+    background: url(${props => props.imgurl});
     background-repeat: no-repeat;
     background-size: 150%;
     background-position: center;

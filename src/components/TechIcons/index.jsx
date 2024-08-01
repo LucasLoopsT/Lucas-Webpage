@@ -1,9 +1,9 @@
 import { Container } from './styles'
 
-function TechIcons({imgURL, alt}) {
+function TechIcons({imgurl, alt}) {
   return (
     <Container>
-      <img src={imgURL} alt={alt}></img>
+      <img src={imgurl} alt={alt}></img>
     </Container>
   )
 }

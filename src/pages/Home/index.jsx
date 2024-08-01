@@ -9,38 +9,42 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Lucas from '../../assets/Lucas.png';
 
-
-
 function Home() {
   // Lista de projetos (futuramente dados virão de um banco de dados)
   const allProjects = [
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 1,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 1",
       description: "Vite + React Single Page Application",
     },
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 2,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 2",
       description: "Vite + React Single Page Application",
     },
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 3,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 3",
       description: "Vite + React Single Page Application",
     },
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 4,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 4",
       description: "Vite + React Single Page Application",
     },
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 5,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 5",
       description: "Vite + React Single Page Application",
     },
     {
-      imgURL: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
+      id: 6,
+      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
       projectName: "Portfolio 6",
       description: "Vite + React Single Page Application",
     },
@@ -93,18 +97,20 @@ function Home() {
 
       <Tech>
         <ul>
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=html"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=js"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=react"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=vite"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=styledcomponents"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=cs"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=nodejs"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=express"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=mysql"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=mongo"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=github"} alt={"HTML"} />
-          <TechIcons imgURL={"https://skillicons.dev/icons?i=git"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=git"} alt={"HTML"} />
         </ul>
       </Tech>
 
@@ -117,7 +123,7 @@ function Home() {
           {allProjects.map((project) => (
             <SwiperSlide key={project.id} className='Card_flex'>
               <ProjectCard
-                imgURL={project.imgURL}
+                imgurl={project.imgurl}
                 projectName={project.projectName}
                 description={project.description}
                 alt={project.projectName}
