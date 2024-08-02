@@ -37,11 +37,13 @@ export const Container = styled.div`
         left: 5%;
         top: -20%;
         transition: all 0.2s ease;
+        filter: drop-shadow(2px 4px 6px ${({theme}) => theme.COLORS.color_1});
     }
 
     > header nav img:hover{
         width: 210px;
         cursor: pointer;
+        filter: drop-shadow(2px 4px 20px ${({theme}) => theme.COLORS.color_1});
     }
 
     > header nav ul{

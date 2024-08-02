@@ -3,7 +3,7 @@ import { Container, Hello, Paragraph, Perfil, Tech, Projects, ViewMoreButton } f
 import Header from '../../components/Header/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
-// import Footer from '../../components/Footer/index.jsx';
+import Footer from '../../components/Footer/index.jsx';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -132,6 +132,8 @@ function Home() {
           ))}
         </Swiper>
       </Projects>
+
+      <Footer className='Section'/>
     </Container>
   );
 }
