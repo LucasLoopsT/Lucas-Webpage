@@ -53,7 +53,7 @@ export const Paragraph = styled.div`
 export const Perfil = styled.div`
     
     display: flex;
-    justify-content: center;
+    justify-content: end;
     width: 50%;
     height: 300px;
     position: relative;
@@ -61,13 +61,14 @@ export const Perfil = styled.div`
     img{
         width: 325px;
         height: 325px;
-
+        margin-right: 10%;
         border-radius: 50px;
     }
     
     #square{
         width: 100%;
         min-width: 400px;
+        max-width: 400px;
         height: 100%;
         position: absolute;
         display: flex;
