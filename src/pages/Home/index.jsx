@@ -80,7 +80,7 @@ function Home() {
     <Container>
       <Header />
 
-      <Hello>
+      <Hello className='Section'>
         <Paragraph>
           <h3>hi guys, i’m:</h3>
           <h1>Lucas Lopes</h1>
@@ -95,7 +95,7 @@ function Home() {
         </Perfil>
       </Hello>
 
-      <Tech>
+      <Tech className='Section'>
         <ul>
           <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} alt={"HTML"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} alt={"HTML"} />
@@ -114,7 +114,7 @@ function Home() {
         </ul>
       </Tech>
 
-      <Projects>
+      <Projects className='Section'>
         <Swiper
           slidesPerView={slidePerView}
           pagination={{ clickable: true }}

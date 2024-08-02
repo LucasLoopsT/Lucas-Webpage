@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
+    .Section{
+        max-width: 1300px;
+        margin: 10vh auto;
+    }
 `
 
 export const Hello = styled.section`
@@ -10,9 +13,6 @@ export const Hello = styled.section`
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    max-width: 1300px;
-    padding: 10vh 0;
-    margin: 0 auto;
 `
 
 export const Paragraph = styled.div`
@@ -89,17 +89,12 @@ export const Perfil = styled.div`
 
 export const Tech = styled.section`
 
-    max-width: 1300px;
-    height: auto;
-    padding: 10vh 0;
-    margin: 0 auto;
-
     ul{
         display: flex;
         justify-content: center;
         align-items: end;
         flex-wrap: wrap;
-        width: 90%;
+        max-width: 70%;
         min-width: 340px;
         gap: 20px;
         margin: 0 auto;
@@ -152,7 +147,6 @@ export const Projects = styled.section`
     .swiper-button-next {
         right: 0;
     }
-
 
     .swiper-button-prev {
         left: 0;
