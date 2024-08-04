@@ -18,13 +18,6 @@ export const Hello = styled.section`
 export const Paragraph = styled.div`
 
     width: 70%;
-    
-    h1, h2, h3 {
-        font-family: "Montserrat", sans-serif;
-        text-transform: uppercase;
-        font-size: 45px;
-        color: ${({ theme }) => theme.COLORS.color_1};
-    }
 
     h1 {
         font-family: "League Spartan", sans-serif;
@@ -39,13 +32,8 @@ export const Paragraph = styled.div`
     }
 
     p {
-        font-family: lato, sans-serif;
         font-weight: 700;
-        text-align: left;
         text-transform: uppercase;
-        font-size: 25px;
-        color: ${({ theme }) => theme.COLORS.color_2}; 
-
         margin: 30px 0 0;
     }
 `
@@ -100,26 +88,6 @@ export const Tech = styled.section`
         gap: 20px;
         margin: 0 auto;
     }
-
-    li{
-        width: 70px;
-        height: 70px;
-        list-style: none;
-    }
-
-    li img{
-        position: relative;
-        filter: grayscale(1);
-        width: 60px;
-        height: 60px;
-        transition: all 0.2s ease;
-    }
-
-    li img:hover{
-        width: 70px;
-        height: 70px;
-        filter: grayscale(0);
-    }
 `
 
 export const Projects = styled.section`
@@ -133,16 +101,39 @@ export const Projects = styled.section`
     width: 90%;
     max-width: 1300px;
     min-height: auto;
-    height: 600px;
-    max-height: 600px;
+    min-height: 800px;
+    height: auto;
+    max-height: 900px;
     padding: 50px 15px;
     margin: 0 auto;
 
     border-radius: 40px;
     background-color: ${({theme}) => theme.COLORS.bg_dark};
 
+    #P_title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        width: 85%;
+        margin: 0 auto;
+        
+        > p {
+            text-align: center;
+        }
+    }
+
+    hr{
+        width: 80%;
+        border: 3px solid ${({theme}) => theme.COLORS.bg};
+    }
+
     .swiper {
-        height: 100%; 
+        min-height: 520px; 
+        height: 100%;
+        max-height: 550px;
+        display: flex;
+        align-items: center;
     }
     
     .swiper-button-next {
@@ -174,25 +165,15 @@ export const Projects = styled.section`
         transform: scale(130%);
     }
 
-    .Card_flex{
+    .swiper-slide{
         display: flex;
         justify-content: center;
         align-items: center;
     }
 `
 
-export const ViewMoreButton = styled.button`
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.COLORS.primary};
-  color: ${({ theme }) => theme.COLORS.text};
-  transition: background-color 0.3s;
+export const Contact = styled.div`
 
-  &:hover {
-    background-color: ${({ theme }) => theme.COLORS.primaryHover};
-  }
+
+
 `;

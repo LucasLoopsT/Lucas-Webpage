@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Hello, Paragraph, Perfil, Tech, Projects, ViewMoreButton } from './styles';
+import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
 import Header from '../../components/Header/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
@@ -97,31 +97,35 @@ function Home() {
 
       <Tech className='Section'>
         <ul>
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=git"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=git"} sizeicon={60} alt={"HTML"} />
         </ul>
       </Tech>
 
       <Projects className='Section'>
+        <div id="P_title">
+          <h2>Projects</h2>
+          <p>Check it out some projects that i made or participate! I'm sure you will enjoy.</p>
+        </div>
+        <hr/>
         <Swiper
           slidesPerView={slidePerView}
           pagination={{ clickable: true }}
           navigation
         >
           {allProjects.map((project) => (
-            <SwiperSlide key={project.id} className='Card_flex'>
+            <SwiperSlide key={project.id}>
               <ProjectCard
                 imgurl={project.imgurl}
                 projectName={project.projectName}
@@ -132,8 +136,19 @@ function Home() {
           ))}
         </Swiper>
       </Projects>
+      
+      <Contact className='Section'>
+        <h2>Contact</h2>
+        <ul>
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={100} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={100} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={100} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={100} alt={"HTML"} />
+        </ul>
+      </Contact>
 
-      <Footer className='Section'/>
+      <Footer/>
+      
     </Container>
   );
 }

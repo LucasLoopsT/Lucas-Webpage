@@ -31,6 +31,7 @@ export const Container = styled.article`
         color: ${({theme}) => theme.COLORS.bg_dark};
         padding-left: 30px;
         transition: 200ms 0.1s ease;
+        font-size: 25px;
     }
 
     #details p{
@@ -42,6 +43,7 @@ export const Container = styled.article`
         -webkit-line-clamp: 3;
         overflow: hidden; 
 
+        font-size: 20px;
         text-align: start;
         color: ${({theme}) => theme.COLORS.bg_dark};
         padding: 30px;
