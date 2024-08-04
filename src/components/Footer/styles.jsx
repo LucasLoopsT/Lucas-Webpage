@@ -4,17 +4,19 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 1300px;
     min-height: 20vh;
     height: 30vh;
     max-height: 35vh;
+    margin: 10vh auto 5vh;
     color:${({theme}) => theme.COLORS.color_1}!important;
     
     footer{
         min-width: 250px;
         width: 80%;
         max-width: 1300px;
-        min-height: 50%;
-        max-height: 70%;
+        min-height: 190px;
+        max-height: 190px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -40,7 +42,13 @@ export const Container = styled.div`
     }
 
     a{
-        color:${({theme}) => theme.COLORS.color_1}!important;
-
+        color:${({theme}) => theme.COLORS.color_1};
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s ease;
     }    
+
+    a:hover{
+        color: ${({theme}) => theme.COLORS.color_2};
+        border-bottom: 1px solid ${({theme}) => theme.COLORS.color_2};
+    }
 `
