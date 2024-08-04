@@ -19,13 +19,29 @@ export default createGlobalStyle`
         outline: none;
     }
 
-    button, a{
-        cursor: pointer;
-        transition: filter 0.2s;
-        text-decoration: none;
+    h1, h2, h3 {
+        font-family: "Montserrat", sans-serif;
+        text-transform: uppercase;
+        color: ${({ theme }) => theme.COLORS.color_1};
+    }
+    
+    h2 {
+        font-size: 45px;
     }
 
-    button:hover, a:hover{
-        filter: brightness(0.9);
+    h3 {
+        font-size: 30px;
+    }
+    
+    p {
+        font-family: lato, sans-serif;
+        text-align: left;
+        font-size: 25px;
+        color: ${({ theme }) => theme.COLORS.color_2}; 
+    }
+
+    button, a{
+        cursor: pointer;
+        text-decoration: none;
     }
 `;
