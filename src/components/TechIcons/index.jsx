@@ -1,8 +1,8 @@
 import { Container } from './styles'
 
-function TechIcons({imgurl, alt}) {
+function TechIcons({imgurl, sizeicon, alt}) {
   return (
-    <Container>
+    <Container sizeicon={sizeicon}>
       <img src={imgurl} alt={alt}></img>
     </Container>
   )
