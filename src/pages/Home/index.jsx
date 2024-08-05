@@ -97,28 +97,28 @@ function Home() {
 
       <Tech className='Section'>
         <ul>
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={60} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=git"} sizeicon={60} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={60} title={"HTML"} alt={"HTML"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={60} title={"css"} alt={"CSS"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={60} title={"js"} alt={"Javascript"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={60} title={"react"} alt={"react"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={60} title={"vite"} alt={"vite"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} sizeicon={60} title={"styledcomponents"} alt={"styledcomponents"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} sizeicon={60} title={"python"} alt={"python"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} sizeicon={60} title={"C#"} alt={"C#"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={60} title={"NodeJS"} alt={"NodeJS"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} sizeicon={60} title={"Express"} alt={"Express"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={60} title={"MySQL"} alt={"MySQL"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={60} title={"MongoDB"} alt={"MongoDB"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=git"} sizeicon={60} title={"Git"} alt={"Git"} />
         </ul>
       </Tech>
 
       <Projects className='Section'>
-        <div id="P_title">
+        <div className="title">
           <h2>Projects</h2>
           <p>Check it out some projects that i made or participate! I'm sure you will enjoy.</p>
         </div>
-        <hr/>
+        <hr />
         <Swiper
           slidesPerView={slidePerView}
           pagination={{ clickable: true }}
@@ -136,19 +136,39 @@ function Home() {
           ))}
         </Swiper>
       </Projects>
-      
+
       <Contact className='Section'>
-        <h2>Contact</h2>
+        <div className="title">
+          <h2>Contact</h2>
+          <p>These are social midias and other websites you can find me!</p>
+        </div>
+        <hr />
         <ul>
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={100} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={100} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={100} alt={"HTML"} />
-          <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={100} alt={"HTML"} />
+          <div id="socialMidia">
+            <a href='https://www.instagram.com/lucas_loopst/' target='_blank'>
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={100} title={"Instagram"} alt={"Instagram"} />
+            </a>
+          </div>
+          <div id="socialMidia">
+            <a href='https://www.linkedin.com/in/lucas-lopes-781b39263/' target='_blank'>
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={100} title={"Linkedin"} alt={"Linkedin"} />
+            </a>
+          </div>
+          <div id="socialMidia">
+            <a href='#' target='_blank'>
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={100} title={"Gmail"} alt={"Gmail"} />
+            </a>
+          </div>
+          <div id="socialMidia">
+            <a href='https://github.com/LucasLoopsT' target='_blank'>
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={100} title={"Github"} alt={"Github"} />
+            </a>
+          </div>
         </ul>
       </Contact>
 
-      <Footer/>
-      
+      <Footer />
+
     </Container>
   );
 }

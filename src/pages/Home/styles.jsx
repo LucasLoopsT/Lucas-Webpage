@@ -5,6 +5,19 @@ export const Container = styled.div`
         max-width: 1300px;
         margin: 10vh auto;
     }
+
+    .title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        width: 85%;
+        margin: 0 auto;
+        
+        > p {
+            text-align: center;
+        }
+    }
 `
 
 export const Hello = styled.section`
@@ -110,19 +123,6 @@ export const Projects = styled.section`
     border-radius: 40px;
     background-color: ${({theme}) => theme.COLORS.bg_dark};
 
-    #P_title{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-        width: 85%;
-        margin: 0 auto;
-        
-        > p {
-            text-align: center;
-        }
-    }
-
     hr{
         width: 80%;
         border: 3px solid ${({theme}) => theme.COLORS.bg};
@@ -173,7 +173,24 @@ export const Projects = styled.section`
 `
 
 export const Contact = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
 
+    hr{
+        width: 80%;
+        border: 3px solid ${({theme}) => theme.COLORS.bg_dark};
+    }
+
+    ul{
+       display: flex; 
+       flex-wrap: wrap;
+       gap: 25px;
+       width: 260px;
+       margin-top: 25px;
+    }
 
 
 `;
