@@ -5,6 +5,7 @@ export const Container = styled.li`
     width: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
     height: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
     list-style: none;
+    cursor: pointer;
 
     img {
     position: relative;
