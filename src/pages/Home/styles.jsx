@@ -121,11 +121,11 @@ export const Projects = styled.section`
     margin: 0 auto;
 
     border-radius: 40px;
-    background-color: ${({theme}) => theme.COLORS.bg_dark};
+    background-color: ${({ theme }) => theme.COLORS.bg_dark};
 
     hr{
         width: 80%;
-        border: 3px solid ${({theme}) => theme.COLORS.bg};
+        border: 3px solid ${({ theme }) => theme.COLORS.bg};
     }
 
     .swiper {
@@ -145,7 +145,7 @@ export const Projects = styled.section`
     }
 
     .swiper-button-prev, .swiper-button-next {
-        color: ${({theme}) => theme.COLORS.color_1};
+        color: ${({ theme }) => theme.COLORS.color_1};
         transition: all 200ms ease;
     }
 
@@ -155,7 +155,7 @@ export const Projects = styled.section`
     }
 
     .swiper-pagination-bullet {
-        background: ${({theme}) => theme.COLORS.color_1};
+        background: ${({ theme }) => theme.COLORS.color_1};
         transition: all 200ms ease;
     }
 
@@ -181,16 +181,87 @@ export const Contact = styled.div`
 
     hr{
         width: 80%;
-        border: 3px solid ${({theme}) => theme.COLORS.bg_dark};
+        border: 3px solid ${({ theme }) => theme.COLORS.bg_dark};
     }
 
     ul{
        display: flex; 
+       justify-content: center;
        flex-wrap: wrap;
        gap: 25px;
-       width: 260px;
+       max-width: 100%;
        margin-top: 25px;
     }
+    
+    li img {
+        z-index: 1;
+    }
 
+    .socialMidia{
+        position: relative;
+        display: flex;
+    }
+
+    .midiaText {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        justify-content: center;
+        top: 10px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+    }
+    
+    .midiaText p{
+        font-size: 20px;
+        margin-left: 65px;
+        color: transparent;
+    }
+    
+    .midiaText p:nth-child(2){
+        padding-left: 30px;
+        max-width: 170px;
+    }
+
+    .midiaText h3{
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        color: transparent;
+        transition: background-color ease 500ms;
+    }
+    
+    .socialMidia li{
+        border-radius: 130px 30px 30px;
+        transition: background-color ease 300ms;
+    }
+    
+   .socialMidia:hover{
+
+    > li{
+        background-color: ${({ theme }) => theme.COLORS.bg_light};
+    }
+
+    > li img {
+        width: 80px;
+        height: 80px;
+        border-radius: 100px;
+        filter: grayscale(0);
+    }
+
+    > .midiaText h3{
+        color: ${({ theme }) => theme.COLORS.color_1};
+        color: white;
+    }
+
+    > .midiaText p{
+        color: ${({ theme }) => theme.COLORS.color_2};
+    }
+    
+}
 
 `;

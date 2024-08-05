@@ -61,7 +61,7 @@ function Home() {
       if (window.innerWidth < 2000) {
         setSlidePerView(3)
       }
-      if (window.innerWidth < 1000) {
+      if (window.innerWidth < 2000) {
         setSlidePerView(2)
       } if (window.innerWidth < 700) {
         setSlidePerView(1)
@@ -144,26 +144,50 @@ function Home() {
         </div>
         <hr />
         <ul>
-          <div id="socialMidia">
-            <a href='https://www.instagram.com/lucas_loopst/' target='_blank'>
-              <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={100} title={"Instagram"} alt={"Instagram"} />
-            </a>
-          </div>
-          <div id="socialMidia">
-            <a href='https://www.linkedin.com/in/lucas-lopes-781b39263/' target='_blank'>
-              <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={100} title={"Linkedin"} alt={"Linkedin"} />
-            </a>
-          </div>
-          <div id="socialMidia">
-            <a href='#' target='_blank'>
-              <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={100} title={"Gmail"} alt={"Gmail"} />
-            </a>
-          </div>
-          <div id="socialMidia">
-            <a href='https://github.com/LucasLoopsT' target='_blank'>
-              <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={100} title={"Github"} alt={"Github"} />
-            </a>
-          </div>
+          <a href='https://www.instagram.com/lucas_loopst/' target='_blank'>
+            <div className="socialMidia">
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={240} title={"Instagram"} alt={"Instagram"} />
+              <div className='midiaText'>
+                <p>&lt;p&gt;</p>
+                <p>I’m low-profile, but you can still find me there.</p>
+                <p>&lt;/p&gt;</p>
+                <h3>Instagram</h3>
+              </div>
+            </div>
+          </a>
+          <a href='https://www.linkedin.com/in/lucas-lopes-781b39263/' target='_blank'>
+            <div className="socialMidia">
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={240} title={"Linkedin"} alt={"Linkedin"} />
+              <div className='midiaText'>
+                <p>&lt;p&gt;</p>
+                <p>Let's connect professionally!</p>
+                <p>&lt;/p&gt;</p>
+                <h3>Linkedin</h3>
+              </div>
+            </div>
+          </a>
+          <a href='mailto:lucasllopes100@gmail.com' target='_blank'>
+            <div className="socialMidia">
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={240} title={"Gmail"} alt={"Gmail"} />
+              <div className='midiaText'>
+                <p>&lt;p&gt;</p>
+                <p>Reach out for collaborations via email.</p>
+                <p>&lt;/p&gt;</p>
+                <h3>Gmail</h3>
+              </div>
+            </div>
+          </a>
+          <a href='https://github.com/LucasLoopsT' target='_blank'>
+            <div className="socialMidia">
+              <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={240} title={"Github"} alt={"Github"} />
+              <div className='midiaText'>
+                <p>&lt;p&gt;</p>
+                <p>Check out my projects and contributions.</p>
+                <p>&lt;/p&gt;</p>
+                <h3>Github</h3>
+              </div>
+            </div>
+          </a>
         </ul>
       </Contact>
 
