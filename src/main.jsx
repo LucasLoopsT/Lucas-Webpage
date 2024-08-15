@@ -6,6 +6,7 @@ import theme from './styles/theme.jsx';
 import GlobalStyle from './styles/global.jsx';
 //Pages
 import Home from './pages/Home/index.jsx';
+import Login from './pages/Login/index.jsx';
 //Swiper
 import { register } from 'swiper/element/bundle';
 import 'swiper/css';
@@ -19,7 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Home />
+      {/* <Home /> */}
+      <Login />
     </ThemeProvider>
   </React.StrictMode>,
 )
