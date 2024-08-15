@@ -232,14 +232,17 @@ export const Contact = styled.div`
         cursor: pointer;
         font-size: 20px;
         color: transparent;
-        transition: background-color ease 500ms;
     }
     
     .socialMidia li{
         border-radius: 130px 30px 30px;
         transition: background-color ease 300ms;
     }
-    
+
+    .socialMidia li img{
+        transition: all ease 500ms;
+    }
+
    .socialMidia:hover{
 
     > li{
