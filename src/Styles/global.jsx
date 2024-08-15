@@ -33,7 +33,7 @@ export default createGlobalStyle`
         font-size: 30px;
     }
     
-    p {
+    p, label {
         font-family: lato, sans-serif;
         text-align: left;
         font-size: 25px;
