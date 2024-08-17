@@ -1,6 +1,6 @@
 import { Container, InputWrapper, IconWrapper } from '../../components/Input/styles';
 
-const Input = ({ name, type, icon }) => {
+const Input = ({ name, type, icon, placeholder }) => {
   return (
     <Container>
       <label htmlFor={name}>{name}</label>
@@ -8,7 +8,7 @@ const Input = ({ name, type, icon }) => {
         <IconWrapper>
           {icon}
         </IconWrapper>
-        <input type={type} name={name} id={name} />
+        <input type={type} name={name} id={name} placeholder={placeholder}/>
       </InputWrapper>
     </Container>
   );

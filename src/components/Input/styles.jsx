@@ -20,15 +20,15 @@ export const InputWrapper = styled.div`
   width: 70%;
 
   input{
-        width: 100%;
-        height: 40px;
-        padding: 10px;
-        padding-left: 40px;
-        border: none;
-        outline: none;
-        border-radius: 10px;
-        background-color: ${({theme}) => theme.COLORS.bg};
-        color: white;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: ${({theme}) => theme.COLORS.bg};
+    color: white;
     }
 `;
 
