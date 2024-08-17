@@ -40,6 +40,10 @@ export default createGlobalStyle`
         color: ${({ theme }) => theme.COLORS.color_2}; 
     }
 
+    label{
+        color: white;
+    }
+
     button, a{
         cursor: pointer;
         text-decoration: none;
