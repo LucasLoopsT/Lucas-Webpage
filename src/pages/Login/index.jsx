@@ -13,15 +13,12 @@ function Login() {
       <Header />
 
       <Form className="Section">
-        <div className="title">
-        <h2>Projects</h2>
-          <p>Check it out some projects that i made or participate! I'm sure you will enjoy.</p>
-        </div>
-        <div id="formulario">
-          <Input name={"User"} type={"text"} icon={<FaRegUser/>}/>
-          <Input name={"Password"} type={"password"} icon={<RiLockPasswordLine/>}/>
-          <Button type={'submit'} text={'Enviar'} />
-        </div>
+        <h2>Login</h2>
+        <form id="formulario">
+          <Input name={"User"} type={"text"} icon={<FaRegUser/>} placeholder={"Email@email.com"}/>
+          <Input name={"Password"} type={"password"} icon={<RiLockPasswordLine/>} placeholder={"12345678"}/>
+          <Button type={'submit'} text={'Send'} />
+        </form>
       </Form>
       
       <Footer />
