@@ -53,7 +53,6 @@ export const Form = styled.div`
     min-width: 300px;
     width: 90%;
     min-height: 600px;
-    /* max-height: 700px; */
     background-color: ${({ theme }) => theme.COLORS.bg_light};
     border-radius: 30px;
     text-align:center;
@@ -76,7 +75,7 @@ export const Form = styled.div`
         align-items: center;
         gap: 30px;
         min-width: 50%;
-        max-width: 85%;
+        max-width: 400px;
         padding: 30px 0;
 
     }
@@ -91,6 +90,40 @@ export const Form = styled.div`
         background-color: ${({ theme }) => theme.COLORS.bg};
         color: white;
         resize: none;
+    }
+
+    #techs_checkbox_list{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        
+        > .tech_check{
+            width: 60px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            list-style:none;
+
+            > div, input, label{
+                width: 100px;
+                font-size: 20px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            li{
+                display: flex;
+                align-items: center;
+                justify-content:center;
+                cursor: default;
+            }
+        }
     }
 `
 
@@ -111,17 +144,31 @@ export const Preview = styled.div`
         border-radius: 30px;
     }
 
-    p{
+    .field{
         border: 3px solid ${({theme}) => theme.COLORS.bg};
         padding: 20px 10px;
         border-radius: 20px;
-        margin: 20px 0;
+        margin: 40px 0;
         font-size: 20px;
+    }
+
+    #techs_preview{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        > li{
+            cursor: default;
+        }
+    }
+
+    a{
+        font-size: 15px;
+        color: ${({ theme }) => theme.COLORS.color_1};
     }
 
     @media screen and (max-width: 600px){
         border-radius: 30px 30px 0 0;
     }
 `
-
-// @MediaQuery 780px
