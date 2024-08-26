@@ -7,6 +7,12 @@ const Header = () => {
             <header>
                 <nav>
                     <img src={logo} alt="Lucas" />
+                    <input type="checkbox" id="menu-faketrigger" />
+                    <div id='menu'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <ul>
                         <li>About</li>
                         <li>Projects</li>

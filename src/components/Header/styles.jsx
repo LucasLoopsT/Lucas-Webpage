@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import bg_header from '../../assets/bg_header.png'
 
 export const Container = styled.div`
- > header{
+    header{
         display: flex;
         justify-content: center;
 
@@ -16,12 +16,11 @@ export const Container = styled.div`
         background-position: top;
     }
 
-    > header nav{
+    nav{
         display: flex;
         align-items: center;
         justify-content: end;
 
-        min-width: 390px;
         width: 90%;
         max-width: 1300px;
         height: 75px;
@@ -31,7 +30,7 @@ export const Container = styled.div`
         border-radius: 100px;
     }
 
-    > header nav img{
+    img{
         width: 200px;
         position: absolute;
         left: 5%;
@@ -40,19 +39,65 @@ export const Container = styled.div`
         filter: drop-shadow(2px 4px 6px ${({theme}) => theme.COLORS.color_1});
     }
 
-    > header nav img:hover{
+    img:hover{
         width: 210px;
         cursor: pointer;
         filter: drop-shadow(2px 4px 20px ${({theme}) => theme.COLORS.color_1});
     }
+    
+    #menu{
+        display: none;
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        z-index: 10;
+    }
+    
+    #menu-faketrigger{
+        display: none;
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 11;
+    }
 
-    > header nav ul{
+    #menu span{
+        display: block;
+        width: 35px;
+        height: 5px;
+        margin-bottom: 10px;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 200ms ease;
+    }
+
+    #menu-faketrigger:hover ~ #menu span{
+        background-color: ${({theme}) => theme.COLORS.color_2}
+    }
+
+    #menu-faketrigger:checked ~ #menu span:nth-child(1){
+        transform-origin: 0% 0%;
+        transform: rotate(45deg) scaleX(1.25);
+    }
+
+    #menu-faketrigger:checked ~ #menu span:nth-child(2){
+        opacity: 0;
+    }
+
+    #menu-faketrigger:checked ~ #menu span:nth-child(3){
+        transform-origin: 0% 100%;
+        transform: rotate(-45deg) scaleX(1.25);
+    }
+
+    ul{
         width: 300px;
         display: flex;
         justify-content: space-between;
     }
 
-    > header nav ul li{
+    ul li{
         font-family: "Montserrat", sans - serif;
         font-optical-sizing: auto;
         font-weight: 900;
@@ -65,8 +110,43 @@ export const Container = styled.div`
         transition: all 0.2s ease;
     }
 
-    > header nav ul li:hover{
+    ul li:hover{
         color: ${({theme}) => theme.COLORS.color_2};
         border-bottom: 2px solid ${({theme}) => theme.COLORS.color_2};
+    }
+    
+    @media screen and (max-width: 620px){
+        #menu, #menu-faketrigger{
+            display: block
+        }
+
+        ul{
+            display: none;
+        }
+        
+        #menu-faketrigger:checked ~ ul {
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                justify-content: start;
+                gap: 20px;
+                top: 0;
+                right: 0;
+                width: 200px;
+                height: 300%;
+                padding: 20px;
+                background-color: ${({theme}) => theme.COLORS.bg_dark_70};
+                border: 2px solid ${({theme}) => theme.COLORS.color_2};
+                border-radius: 25px;
+            
+
+            li{
+                width: 80%;
+            }
+
+            li:first-child{
+                margin-top: 30%;
+            }
+        }
     }
 `
