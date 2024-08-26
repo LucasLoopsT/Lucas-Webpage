@@ -8,6 +8,7 @@ import GlobalStyle from './styles/global.jsx';
 import Home from './pages/Home/index.jsx';
 import Login from './pages/Login/index.jsx';
 import ManageProject from './pages/ManageProject/index.jsx';
+import ProjectView from './pages/ProjectView/index.jsx';
 //Swiper
 import { register } from 'swiper/element/bundle';
 import 'swiper/css';
@@ -23,7 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <GlobalStyle />
       {/* <Home /> */}
       {/* <Login /> */}
-      <ManageProject />
+      {/* <ManageProject /> */}
+      <ProjectView />
+
     </ThemeProvider>
   </React.StrictMode>,
 )
