@@ -49,16 +49,19 @@ function ManageProject() {
               <a className="field" href='#'> <LuExternalLink  /> See the project</a>
             </div>
           </Preview>
+
           <form id="formulario">
             <div className="div_Select">
               <label htmlFor='action'>Action</label>
               <select required id="action" name="action" value={action} onChange={handleActionChange}>
+                <option value="" disabled>Select</option>
                 <option value="Create">Create</option>
                 <option value="Update">Update</option>
                 <option value="Delete">Delete</option>
               </select>
             </div>
-            {action === "Update" || action === "Delete" && (
+
+            {(action === "Update" || action === "Delete") && (
               <div className="div_Select">
                 <label htmlFor='AllProjects'>Select the project</label>
                 <select id="AllProjects" name="AllProjects">
@@ -68,7 +71,8 @@ function ManageProject() {
                 </select>
               </div>
             )}
-            {action != "Delete" && (
+            
+            {(action === "Create" || action === "Update") && (
               <>
                 <Input name={"Project Name"} type={"text"} icon={<LuPencil />} placeholder={"Project X."} />
                 <Input name={"Project Image"} type={"text"} icon={<FaRegImage />} placeholder={"Url."} />
@@ -76,38 +80,38 @@ function ManageProject() {
                 <Textarea name={"Description"} icon={<CgNotes />} placeholder={"Here you can write more about this project."} />
                 <Input name={"Project Link"} type={"text"} icon={<FaLink />} placeholder={"Repository link."} />
                 <ul id="techs_checkbox_list">
-                  <li className="tech_check">
+                  <div className="tech_check">
                     <Input name={"HTML"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"CSS"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"JS"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"React"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"Vite"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"NodeJS"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"MySQL"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={40} />
-                  </li>
-                  <li className="tech_check">
+                  </div>
+                  <div className="tech_check">
                     <Input name={"Mongo"} type={"checkbox"} />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
-                  </li>
+                  </div>
                 </ul>
                 <Button type={'submit'} text={'Preview'} />
               </>

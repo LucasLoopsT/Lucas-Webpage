@@ -23,8 +23,10 @@ export const Container = styled.div`
     #content{
         display: flex;
         justify-content: center;
+        background-color: ${({ theme }) => theme.COLORS.bg_light};
         border: 3px solid ${({ theme }) => theme.COLORS.bg_dark};
         border-radius: 30px;
+
     }
 
     @media screen and (max-width: 600px){
@@ -37,8 +39,9 @@ export const Container = styled.div`
         }
 
         #formulario{
-            min-width: 250px!important;
+            /* min-width: 250px!important; */
             width: 100%;
+            
         }
     }
 `
@@ -50,7 +53,7 @@ export const Form = styled.div`
     justify-content: space-evenly;
     align-items: center;
     gap: 30px;
-    min-width: 300px;
+    /* min-width: 300px; */
     width: 90%;
     min-height: 600px;
     background-color: ${({ theme }) => theme.COLORS.bg_light};
@@ -74,9 +77,10 @@ export const Form = styled.div`
         flex-direction:column;
         align-items: center;
         gap: 30px;
-        min-width: 50%;
+        /* min-width: 50%; */
         max-width: 400px;
         padding: 30px 0;
+        min-width: 230px;
 
     }
 
@@ -163,8 +167,9 @@ export const Preview = styled.div`
         }
     }
 
-    a{
-        font-size: 15px;
+    a:last-child{
+        display: block;
+        width: 100%;
         color: ${({ theme }) => theme.COLORS.color_1};
     }
 
