@@ -22,10 +22,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {/* <Home /> */}
+      <Home />
       {/* <Login /> */}
       {/* <ManageProject /> */}
-      <ProjectView />
+      {/* <ProjectView /> */}
 
     </ThemeProvider>
   </React.StrictMode>,
