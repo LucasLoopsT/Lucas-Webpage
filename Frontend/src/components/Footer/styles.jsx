@@ -13,7 +13,7 @@ export const Container = styled.div`
     
     footer{
         min-width: 250px;
-        width: 80%;
+        width: 90%;
         max-width: 1300px;
         min-height: 190px;
         max-height: 190px;
