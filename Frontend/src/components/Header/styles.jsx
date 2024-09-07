@@ -123,30 +123,54 @@ export const Container = styled.div`
         ul{
             display: none;
         }
+
+        ul::after{
+            content:"";
+            display: inline-block;
+            width:100%;
+            height:100%;
+            background-color: ${({theme}) => theme.COLORS.bg_dark};
+            opacity: 0.8;
+            border-radius: 25px;
+            position: absolute;
+            z-index: 10;
+        }
         
         #menu-faketrigger:checked ~ ul {
-                display: flex;
-                position: absolute;
-                flex-direction: column;
-                justify-content: start;
-                gap: 20px;
-                top: 0;
-                right: 0;
-                width: 200px;
-                height: 300%;
-                padding: 20px;
-                background-color: ${({theme}) => theme.COLORS.bg_dark_70};
-                border: 2px solid ${({theme}) => theme.COLORS.color_2};
-                border-radius: 25px;
-            
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            top: 145%;
+            right: 0;
+            width: 100%;
+            height: 200%;
+            padding: 20px;
+            background: url(${bg_header});
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            border: 2px solid ${({theme}) => theme.COLORS.color_2};
+            border-radius: 25px;
+            animation: openUl 0.5s forwards;
 
             li{
-                width: 80%;
-            }
+                width: auto;
+                z-index: 100;
 
-            li:first-child{
-                margin-top: 30%;
             }
+        }
+    }
+    
+    @keyframes openUl {
+        0%{
+            opacity: 0;
+            transform: translateY(-145%);
+        }
+        100%{
+
         }
     }
 `
