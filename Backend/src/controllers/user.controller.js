@@ -42,9 +42,25 @@ export class Controller {
         }
     }
 
+    findById = async (req, res) => {     
+        try{ 
+            const id = req.params.id;
+            
+            if (!id) {
+                res.status(400).send({message: "Submit the Id field."})
+            }
+        
+            const user = await services.findById(id);
+
+            res.status(200).send(user);
+        } catch(e) {
+            res.status(500).send({message:e.message})
+        }
+    }
+
     update = async (req, res) => {      
         try{
-            const {name, email, password} = req.project;
+            const {name, email, password} = req.body;
 
             if (!name && !email && !password) {
                 res.status(400).send({message: "Submit at least one field to update."})
@@ -54,7 +70,7 @@ export class Controller {
 
             await services.update(id, name, email, password);
         
-            res.status(201).send({message: "Project successfully updated."});
+            res.status(201).send({message: "User successfully updated."});
         } catch(e) {
            res.status(500).send({message:e.message})
         }
@@ -62,16 +78,11 @@ export class Controller {
 
     delete = async (req, res) => {  
         try{
+            const id = req.id;
 
-            const {id} = req.body;
+            await services.delete(id);
             
-            if (!id) {
-                res.status(400).send({message: "Submit the ID field to delete the project."})
-            }
-            
-            await services.findAll();
-            
-            res.status(200).send(projects);
+            res.status(200).send({message:"User deleted."});
         } catch(e) {
             res.status(500).send({message:e.message})
         }   
