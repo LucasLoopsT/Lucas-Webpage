@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "https://lucas-webpage.onrender.com/doc/",
+            "url": "https://lucas-webpage.onrender.com",
             "description": "Render Server"
         },
         {
