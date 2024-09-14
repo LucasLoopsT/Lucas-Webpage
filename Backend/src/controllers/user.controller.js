@@ -70,7 +70,7 @@ export class Controller {
 
             await services.update(id, name, email, password);
         
-            res.status(201).send({message: "User successfully updated."});
+            res.status(200).send({message: "User successfully updated."});
         } catch(e) {
            res.status(500).send({message:e.message})
         }

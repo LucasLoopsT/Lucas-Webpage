@@ -76,7 +76,7 @@ export class Controller {
 
             await services.update(id, name, preview, shortDescription, description, techs, link_git, link_deploy);
         
-            res.status(201).send({message: "Project successfully updated."});
+            res.status(200).send({message: "Project successfully updated."});
         } catch(e) {
            res.status(500).send({message:e.message});
         }
