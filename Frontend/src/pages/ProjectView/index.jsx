@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Preview } from './styles.jsx';
-import Header from '../../components/Header/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import img_Default from "../../assets/Preview_Default.png"
-import Footer from '../../components/Footer/index.jsx';
 // Icons
 import { LuExternalLink} from "react-icons/lu";
 
 function ProjectView() {
   return (
     <>
-      <Header />
-
       <Preview>
         <h2>Project X</h2>
         <img src={img_Default} alt="" />
@@ -29,8 +25,6 @@ function ProjectView() {
         </div>
         <a className="field" href='#'> <LuExternalLink /> See the project</a>
       </Preview>
-
-      <Footer />
     </>
   );
 }

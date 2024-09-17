@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
-import Header from '../../components/Header/index.jsx';
 import Input from '../../components/Input/index.jsx';
 import Textarea from '../../components/Textarea/index.jsx';
 import Button from '../../components/Button/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
-import Footer from '../../components/Footer/index.jsx';
 import img_Default from "../../assets/Preview_Default.png"
 
 // Icons
@@ -22,8 +20,6 @@ function ManageProject() {
 
   return (
     <Container>
-      <Header />
-
       <Form className="Section">
         <div className="title">
           <h2>Manage Projects</h2>
@@ -128,7 +124,6 @@ function ManageProject() {
           <Button type={'submit'} text={'Delete'} />
         )}
       </Form>
-      <Footer />
     </Container>
   );
 }

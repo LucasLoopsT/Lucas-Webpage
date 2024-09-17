@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
-import Header from '../../components/Header/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
-import Footer from '../../components/Footer/index.jsx';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -78,8 +76,6 @@ function Home() {
 
   return (
     <Container>
-      <Header />
-
       <Hello className='Section'>
         <Paragraph>
           <h3>hi guys, i’m:</h3>
@@ -190,9 +186,6 @@ function Home() {
           </a>
         </ul>
       </Contact>
-
-      <Footer />
-
     </Container>
   );
 }
