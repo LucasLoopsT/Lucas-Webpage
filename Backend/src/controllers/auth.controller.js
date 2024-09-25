@@ -6,27 +6,27 @@ const login = async (req, res) => {
         const {email, password} = req.body;
         
         if(!email || !password){
-            res.status(400).send({message: "Submit all fields to login."})
+            return res.status(400).send({message: "Submit all fields to login."})
         }
 
         const user = await loginService(email);
 
         if(!user){
-            res.status(404).send({message: "User or Password invalid."})
+            return res.status(404).send({message: "User or Password invalid."})
         }
 
         const passwordIsValid = bcrypt.compareSync(password, user.password);
         
         if(!passwordIsValid){
-            res.status(404).send({message: "User or Password invalid."})
+            return res.status(404).send({message: "User or Password invalid."})
         }
         
         const token = generateToken(user.id);
 
-        res.send({token});
+        return res.send({token});
 
     } catch(e) {
-        res.status(500).send({message:e.message})
+        return res.status(500).send({message:e.message})
     }
 }
 

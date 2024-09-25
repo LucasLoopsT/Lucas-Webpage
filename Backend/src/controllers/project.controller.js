@@ -8,7 +8,7 @@ export class Controller {
             const {name, preview, shortDescription, description, techs, link_git, link_deploy} = req.body;
     
             if (!name || !preview || !shortDescription || !description || !techs || !link_git || !link_deploy ) {
-                res.status(400).send({message: "Submit all fields to registration."})
+                return res.status(400).send({message: "Submit all fields to registration."})
             }
         
             const project = await services.create(req.body);
@@ -17,7 +17,7 @@ export class Controller {
                 return res.status(400).send({message:"Error creating project."})
             }
         
-            res.status(201).send({
+            return res.status(201).send({
                 project:{
                     id: project._id,
                     name,
@@ -30,7 +30,7 @@ export class Controller {
                 } 
             });
         } catch(e) {
-            res.status(500).send({message:e.message});
+            return res.status(500).send({message:e.message});
         }
     }
     
@@ -39,12 +39,12 @@ export class Controller {
             const projects = await services.findAll();
             
             if (projects.length === 0) {
-                res.status(400).send({message: "There are no projects."})
+                return res.status(400).send({message: "There are no projects."})
             }
         
-            res.status(200).send(projects);
+            return res.status(200).send(projects);
         } catch(e) {
-            res.status(500).send({message:e.message});
+            return res.status(500).send({message:e.message});
         }
     }
 
@@ -53,14 +53,14 @@ export class Controller {
             const id = req.params.id;
             
             if (!id) {
-                res.status(400).send({message: "Submit the Id field."})
+                return res.status(400).send({message: "Submit the Id field."})
             }
         
             const project = await services.findById(id);
 
-            res.status(200).send(project);
+            return res.status(200).send(project);
         } catch(e) {
-            res.status(500).send({message:e.message});
+            return res.status(500).send({message:e.message});
         }
     }
 
@@ -69,16 +69,16 @@ export class Controller {
             const {name, preview, shortDescription, description, techs, link_git, link_deploy} = req.body;
 
             if (!name && !preview && !shortDescription && !description && !techs && !link_git && !link_deploy ) {
-                res.status(400).send({message: "Submit at least one field to update."})
+                return res.status(400).send({message: "Submit at least one field to update."})
             }
 
             const id = req.id;
 
             await services.update(id, name, preview, shortDescription, description, techs, link_git, link_deploy);
         
-            res.status(200).send({message: "Project successfully updated."});
+            return res.status(200).send({message: "Project successfully updated."});
         } catch(e) {
-           res.status(500).send({message:e.message});
+            return res.status(500).send({message:e.message});
         }
     }
 
@@ -88,9 +88,9 @@ export class Controller {
 
             await services.delete(id);
             
-            res.status(200).send({message:"Project deleted."});
+            return res.status(200).send({message:"Project deleted."});
         } catch(e) {
-            res.status(500).send({message:e.message});
+            return res.status(500).send({message:e.message});
         }   
     }
 }
