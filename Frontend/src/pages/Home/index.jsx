@@ -75,7 +75,7 @@ function Home() {
   }, [])
 
   return (
-    <Container>
+    <Container id="about">
       <Hello className='Section'>
         <Paragraph>
           <h3>hi guys, i’m:</h3>
@@ -109,7 +109,7 @@ function Home() {
         </ul>
       </Tech>
 
-      <Projects className='Section'>
+      <Projects className='Section' id="projects">
         <div className="title">
           <h2>Projects</h2>
           <p>Check it out some projects that i made or participate! I'm sure you will enjoy.</p>
@@ -133,7 +133,7 @@ function Home() {
         </Swiper>
       </Projects>
 
-      <Contact className='Section'>
+      <Contact className='Section' id="contact">
         <div className="title">
           <h2>Contact</h2>
           <p>These are social midias and other websites you can find me!</p>
