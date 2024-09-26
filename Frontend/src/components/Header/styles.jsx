@@ -95,6 +95,7 @@ export const Container = styled.div`
         width: 300px;
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 10%;
     }
 
@@ -116,6 +117,17 @@ export const Container = styled.div`
         border-bottom: 2px solid ${({theme}) => theme.COLORS.color_2};
     }
     
+    #signOut{
+        color: ${({theme}) => theme.COLORS.color_2};
+        font-size:30px;
+        transition: all 0.2s ease;
+    }
+
+    #signOut:hover{
+        color: ${({theme}) => theme.COLORS.color_1};
+        cursor: pointer;
+    }
+
     @media screen and (max-width: 620px){
         #menu, #menu-faketrigger{
             display: block
@@ -147,7 +159,7 @@ export const Container = styled.div`
             top: 145%;
             right: 0;
             width: 100%;
-            height: 200%;
+            height: 260%;
             padding: 20px;
             background: url(${bg_header});
             background-repeat: no-repeat;

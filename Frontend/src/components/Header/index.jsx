@@ -1,7 +1,9 @@
 import { Container } from '../../components/Header/styles';
-import logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
+
+import logo from '../../assets/logo.png';
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -50,15 +52,13 @@ const Header = () => {
                         <span></span>
                     </div>
                     <ul>
-                        {!token && (
-                            <>
-                                <li onClick={goToAbout}>About</li>
-                                <li onClick={goToProjects}>Projects</li>
-                                <li onClick={goToContact}>Contact</li>
-                            </>
-                        )}
+                        <li onClick={goToAbout}>About</li>
+                        <li onClick={goToProjects}>Projects</li>
+                        <li onClick={goToContact}>Contact</li>                        
                         {token && (
-                            <li onClick={signOut}>SignOut</li>
+                            <li>
+                                <FaSignOutAlt id="signOut" onClick={signOut} />
+                            </li>
                         )}
                     </ul>
                 </nav>
