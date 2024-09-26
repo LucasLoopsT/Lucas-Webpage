@@ -1,9 +1,11 @@
 import { Container } from '../../components/Header/styles';
 import logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const Header = () => {
     const navigate = useNavigate();
+    const token = Cookies.get("token");
 
     // Função para navegação para About (raiz "/")
     function goToAbout() {
@@ -11,7 +13,8 @@ const Header = () => {
         if (element) {
             navigate("/");
             element.scrollIntoView({ behavior: 'smooth' });
-        }    }
+        }    
+    }
 
     // Função para navegação até a seção de Projetos
     function goToProjects() {
@@ -30,6 +33,11 @@ const Header = () => {
         }
     }
 
+    function signOut(){
+        Cookies.remove("token");
+        navigate("/");
+    }
+
     return (
         <Container>
             <header>
@@ -42,9 +50,16 @@ const Header = () => {
                         <span></span>
                     </div>
                     <ul>
-                        <li onClick={goToAbout}>About</li>
-                        <li onClick={goToProjects}>Projects</li>
-                        <li onClick={goToContact}>Contact</li>
+                        {!token && (
+                            <>
+                                <li onClick={goToAbout}>About</li>
+                                <li onClick={goToProjects}>Projects</li>
+                                <li onClick={goToContact}>Contact</li>
+                            </>
+                        )}
+                        {token && (
+                            <li onClick={signOut}>SignOut</li>
+                        )}
                     </ul>
                 </nav>
             </header>

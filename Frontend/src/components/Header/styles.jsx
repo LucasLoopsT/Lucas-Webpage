@@ -94,7 +94,8 @@ export const Container = styled.div`
     ul{
         width: 300px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 10%;
     }
 
     ul li{
