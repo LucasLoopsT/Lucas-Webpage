@@ -8,6 +8,7 @@ import Home from './pages/Home/index.jsx';
 import ProjectView from './pages/ProjectView'
 import Login from './pages/Login/index.jsx';
 import ManageProject from './pages/ManageProject/index.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/manage",
-        element: <ManageProject />,
+        element: (
+          <ProtectedRoute>
+            <ManageProject />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/projeto",

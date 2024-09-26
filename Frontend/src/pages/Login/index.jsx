@@ -2,6 +2,8 @@ import { useState } from 'react'; // Adicione useState
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../services/userServices.js";
 
+import Cookies from "js-cookie";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod"; // Validador de esquema
@@ -33,7 +35,7 @@ function Login() {
       const response = await login(data.email, data.password);
       console.log("Login bem-sucedido:", response);
       navigate("/manage");
-      
+      Cookies.set('token', response.data.token, {expires: 1});
     } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
           setErrorMessage(error.response.data.message);
