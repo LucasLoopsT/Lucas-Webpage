@@ -167,10 +167,21 @@ export const Preview = styled.div`
         }
     }
 
-    a:last-child{
+    a{
         display: block;
         width: 100%;
         color: ${({ theme }) => theme.COLORS.color_1};
+    }
+
+    a{
+        display: block;
+        width: 100%;
+        color: ${({ theme }) => theme.COLORS.color_1};
+        transition: all 0.2s ease;
+    }
+
+    a:hover{
+        color: ${({ theme }) => theme.COLORS.color_2};
     }
 
     @media screen and (max-width: 600px){

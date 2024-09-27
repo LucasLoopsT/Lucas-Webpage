@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { act, useEffect, useState } from 'react';
+import Cookies from "js-cookie";
+import { findAll, findById } from "../../services/projectServices.js"
+
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
 import Textarea from '../../components/Textarea/index.jsx';
@@ -6,17 +9,45 @@ import Button from '../../components/Button/index.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import img_Default from "../../assets/Preview_Default.png"
 
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 // Icons
-import { FaRegImage, FaLink } from "react-icons/fa6";
-import { LuExternalLink , LuPencil, LuText } from "react-icons/lu";
+import { FaRegImage, FaLink, FaGithub } from "react-icons/fa6";
+import { LuExternalLink, LuPencil, LuText } from "react-icons/lu";
 import { CgNotes } from "react-icons/cg";
 
+const projectSchema = z.object({
+  name: z.string(),
+  preview: z.string(),
+  shortDescription: z.string(),
+  description: z.string(),
+  // techs: z.string(),
+  link_git: z.string(),
+  link_deploy: z.string()
+});
+
 function ManageProject() {
+
   const [action, setAction] = useState('');
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(projectSchema),
+  });
 
   const handleActionChange = (e) => {
     setAction(e.target.value);
   };
+
+  const handlePreview = () => {
+    alert("project preview");
+  }
+
+  const handleSendProject = (data) => {
+    console.log(action)
+    console.log(data)
+  }
 
   return (
     <Container>
@@ -42,11 +73,15 @@ function ManageProject() {
                 <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={40} />
                 <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
               </div>
-              <a className="field" href='#'> <LuExternalLink  /> See the project</a>
+              <a className="field" href='#'> <FaGithub /> See the repository</a>
+              <a className="field" href='#'> <LuExternalLink /> See the project</a>
             </div>
+            {(action != "Delete") && (
+              <Button type={'submit'} text={'Preview'} onClick={handlePreview} />
+            )}
           </Preview>
 
-          <form id="formulario">
+          <form id="formulario" onSubmit={handleSubmit(handleSendProject)}>
             <div className="div_Select">
               <label htmlFor='action'>Action</label>
               <select required id="action" name="action" value={action} onChange={handleActionChange}>
@@ -67,14 +102,50 @@ function ManageProject() {
                 </select>
               </div>
             )}
-            
+
             {(action === "Create" || action === "Update") && (
               <>
-                <Input name={"Project Name"} type={"text"} icon={<LuPencil />} placeholder={"Project X."} />
-                <Input name={"Project Image"} type={"text"} icon={<FaRegImage />} placeholder={"Url."} />
-                <Input name={"Short Description"} type={"text"} icon={<LuText />} placeholder={"What is this project for?"} />
-                <Textarea name={"Description"} icon={<CgNotes />} placeholder={"Here you can write more about this project."} />
-                <Input name={"Project Link"} type={"text"} icon={<FaLink />} placeholder={"Repository link."} />
+                <Input
+                  name={"Project Name"}
+                  type={"text"}
+                  icon={<LuPencil />}                  
+                  placeholder={"Project X."}
+                  {...register("name")}
+                />
+                <Input
+                  name={"Project Image"}
+                  type={"text"}
+                  icon={<FaRegImage />}                  
+                  placeholder={"Url."}
+                  {...register("preview")}
+                />
+                <Input
+                  name={"Short Description"}
+                  type={"text"}
+                  icon={<LuText />}                  
+                  placeholder={"What is this project for?"}
+                  {...register("shortDescription")}
+                />
+                <Textarea
+                  name={"Description"}
+                  icon={<CgNotes />}                  
+                  placeholder={"Here you can write more about this project."}
+                  {...register("description")}
+                />
+                <Input
+                  name={"Project Repository"}
+                  type={"text"}
+                  icon={<FaGithub />}                  
+                  placeholder={"Repository link."}
+                  {...register("link_git")}
+                />
+                <Input
+                  name={"Deploy Link"}
+                  type={"text"}
+                  icon={<FaLink />}                  
+                  placeholder={"Repository link."}
+                  {...register("link_deploy")}
+                />
                 <ul id="techs_checkbox_list">
                   <div className="tech_check">
                     <Input name={"HTML"} type={"checkbox"} />
@@ -109,20 +180,19 @@ function ManageProject() {
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
                   </div>
                 </ul>
-                <Button type={'submit'} text={'Preview'} />
               </>
+            )}
+            {action === "Create" && (
+              <Button type={'submit'} text={'Create'} />
+            )}
+            {action === "Update" && (
+              <Button type={'submit'} text={'Update'} />
+            )}
+            {action === "Delete" && (
+              <Button type={'submit'} text={'Delete'} />
             )}
           </form>
         </div>
-        {action === "Create" && (
-          <Button type={'submit'} text={'Create'} />
-        )}
-        {action === "Update" && (
-          <Button type={'submit'} text={'Update'} />
-        )}
-        {action === "Delete" && (
-          <Button type={'submit'} text={'Delete'} />
-        )}
       </Form>
     </Container>
   );
