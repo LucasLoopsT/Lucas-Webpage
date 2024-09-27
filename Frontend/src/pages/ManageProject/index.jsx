@@ -1,6 +1,6 @@
 import { act, useEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { findAll, findById } from "../../services/projectServices.js"
+import { findAll, create } from "../../services/projectServices.js"
 
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
@@ -23,14 +23,14 @@ const projectSchema = z.object({
   preview: z.string(),
   shortDescription: z.string(),
   description: z.string(),
-  // techs: z.string(),
   link_git: z.string(),
-  link_deploy: z.string()
+  link_deploy: z.string(),
+  techs: z.array(z.string()),
 });
 
 function ManageProject() {
-
   const [action, setAction] = useState('');
+  const token = Cookies.get("token");
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(projectSchema),
@@ -44,9 +44,31 @@ function ManageProject() {
     alert("project preview");
   }
 
-  const handleSendProject = (data) => {
-    console.log(action)
-    console.log(data)
+  const handleSendProject = async (data) => {
+    try{
+      if(action === "Create"){
+        console.log(action);
+        console.log(data);
+        const project = await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        return console.log(project);
+
+      } else if (action === "Update"){
+        console.log(action);
+        console.log(data);
+
+      } else if (action === "Delete"){
+        console.log(action);
+
+      } else {
+        console.log("função não encontrada");
+      }
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert(`Ocorreu um erro ao executar ${action} do projeto.`);
+      }
+    }
   }
 
   return (
@@ -106,41 +128,41 @@ function ManageProject() {
             {(action === "Create" || action === "Update") && (
               <>
                 <Input
-                  name={"Project Name"}
+                  nameField={"Project Name"}
                   type={"text"}
                   icon={<LuPencil />}                  
                   placeholder={"Project X."}
                   {...register("name")}
                 />
                 <Input
-                  name={"Project Image"}
+                  nameField={"Project Image"}
                   type={"text"}
                   icon={<FaRegImage />}                  
                   placeholder={"Url."}
                   {...register("preview")}
                 />
                 <Input
-                  name={"Short Description"}
+                  nameField={"Short Description"}
                   type={"text"}
                   icon={<LuText />}                  
                   placeholder={"What is this project for?"}
                   {...register("shortDescription")}
                 />
                 <Textarea
-                  name={"Description"}
+                  nameField={"Description"}
                   icon={<CgNotes />}                  
                   placeholder={"Here you can write more about this project."}
                   {...register("description")}
                 />
                 <Input
-                  name={"Project Repository"}
+                  nameField={"Project Repository"}
                   type={"text"}
                   icon={<FaGithub />}                  
                   placeholder={"Repository link."}
                   {...register("link_git")}
                 />
                 <Input
-                  name={"Deploy Link"}
+                  nameField={"Deploy Link"}
                   type={"text"}
                   icon={<FaLink />}                  
                   placeholder={"Repository link."}
@@ -148,35 +170,75 @@ function ManageProject() {
                 />
                 <ul id="techs_checkbox_list">
                   <div className="tech_check">
-                    <Input name={"HTML"} type={"checkbox"} />
+                    <Input 
+                      nameField={"HTML"} 
+                      type={"checkbox"} 
+                      value="HTML"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"CSS"} type={"checkbox"} />
+                    <Input 
+                      nameField={"CSS"} 
+                      type={"checkbox"} 
+                      value="CSS"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"JS"} type={"checkbox"} />
+                    <Input 
+                      nameField={"JS"} 
+                      type={"checkbox"} 
+                      value="JS"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"React"} type={"checkbox"} />
+                    <Input 
+                      nameField={"React"} 
+                      type={"checkbox"} 
+                      value="React"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"Vite"} type={"checkbox"} />
+                    <Input 
+                      nameField={"Vite"} 
+                      type={"checkbox"} 
+                      value="Vite"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"NodeJS"} type={"checkbox"} />
+                    <Input 
+                      nameField={"NodeJS"} 
+                      type={"checkbox"} 
+                      value="NodeJS"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"MySQL"} type={"checkbox"} />
+                    <Input 
+                      nameField={"MySQL"} 
+                      type={"checkbox"} 
+                      value="MySQL"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={40} />
                   </div>
                   <div className="tech_check">
-                    <Input name={"Mongo"} type={"checkbox"} />
+                    <Input 
+                      nameField={"Mongo"} 
+                      type={"checkbox"} 
+                      value="Mongo"
+                      {...register("techs")} 
+                    />
                     <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
                   </div>
                 </ul>

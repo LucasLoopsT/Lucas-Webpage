@@ -2,29 +2,43 @@ import axios from "axios";
 
 const baseURL = "http://localhost:3000";
 
-function create(name, preview, shortDescription, description, techs, link_git, link_deploy){
-    const response = axios.post(`${baseURL}/project`, {name, preview, shortDescription, description, techs, link_git, link_deploy});
+export function create(token, name, preview, shortDescription, description, techs, link_git, link_deploy){
+    const response = axios.post(`${baseURL}/project/`, {name, preview, shortDescription, description, techs, link_git, link_deploy}, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     return response;
 }
 
-function findAll(){
+export function findAll(){
     const response = axios.get(`${baseURL}/project`);
     return response;
 }
 
-function findById(){
-    const response = axios.get(`${baseURL}/project/${id}`);
+export function findById(token, id){
+    const response = axios.get(`${baseURL}/project/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     return response;
 }
 
-function update(name, preview, shortDescription, description, techs, link_git, link_deploy){
-    const response = axios.patch(`${baseURL}/project/${id}`, {name, preview, shortDescription, description, techs, link_git, link_deploy});
+export function update(name, preview, shortDescription, description, techs, link_git, link_deploy){
+    const response = axios.patch(`${baseURL}/project/${id}`, {name, preview, shortDescription, description, techs, link_git, link_deploy}, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     return response;
 }
 
-function deleteProject(){
-    const response = axios.delete(`${baseURL}/project/delete/${id}`);
+export function deleteProject(token, id){
+    const response = axios.delete(`${baseURL}/project/delete/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    });
     return response;
 }
-
-export default {create, findAll, findById, update, deleteProject}
