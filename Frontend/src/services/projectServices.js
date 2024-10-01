@@ -25,7 +25,7 @@ export function findById(token, id){
     return response;
 }
 
-export function update(name, preview, shortDescription, description, techs, link_git, link_deploy){
+export function update(token, id, name, preview, shortDescription, description, techs, link_git, link_deploy){
     const response = axios.patch(`${baseURL}/project/${id}`, {name, preview, shortDescription, description, techs, link_git, link_deploy}, {
         headers: {
             authorization: `Bearer ${token}`

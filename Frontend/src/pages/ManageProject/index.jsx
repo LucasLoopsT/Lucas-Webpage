@@ -1,6 +1,6 @@
 import { act, useEffect, useLayoutEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { findAll, create } from "../../services/projectServices.js"
+import { create, findAll, update } from "../../services/projectServices.js"
 
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
@@ -30,6 +30,7 @@ const projectSchema = z.object({
 
 function ManageProject() {
   const [projects, setProjects] = useState([]); 
+  const [selectedProject, setSelectedProject] = useState(null);
   const [action, setAction] = useState('');
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -63,6 +64,7 @@ function ManageProject() {
   const handleSelectProject = (event) => {
     const projectId = event.target.value;
     const project = projects.find(p => p._id === projectId);
+    setSelectedProject(projectId);
 
     if (project) {      
       setValue("name", project.name);
@@ -79,17 +81,16 @@ function ManageProject() {
   const handleSendProject = async (data) => {
     try {
       if (action === "Create") {
-        console.log(action);
-        console.log(data);
         const project = await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
-        setMessage(`Created: ${project.name}`);
+        setMessage(`Created: ${data.name}`);
         setErrorMessage(null);
 
         reset();
 
       } else if (action === "Update") {
-        console.log(action);
-        console.log(data);
+        const project = await update(token, selectedProject, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        setMessage(project.data.message);
+        setErrorMessage(null);
 
       } else if (action === "Delete") {
         console.log(action);
@@ -102,7 +103,7 @@ function ManageProject() {
         setErrorMessage(error.response.data.message);
         setMessage(null);
       } else {
-        setErrorMessage(`Ocorreu um erro ao executar ${action} do projeto.`);
+        setErrorMessage(`Ocorreu um erro ao executar o ${action} do projeto.`);
         setMessage(null);
       }
     }
