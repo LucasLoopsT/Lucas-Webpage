@@ -1,6 +1,6 @@
 import { act, useEffect, useLayoutEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { create, findAll, update } from "../../services/projectServices.js"
+import { create, findAll, update, deleteProject } from "../../services/projectServices.js"
 
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
@@ -42,6 +42,7 @@ function ManageProject() {
 
   const handleActionChange = (e) => {
     setAction(e.target.value);
+    reset();
   };
 
   const handlePreview = () => {
@@ -93,8 +94,13 @@ function ManageProject() {
         setErrorMessage(null);
 
       } else if (action === "Delete") {
-        console.log(action);
+        const project = await deleteProject(token, selectedProject);
+        setMessage(project.data.message);
+        setErrorMessage(null);
 
+        reset();
+        findAllProjects();
+        
       } else {
         console.log("função não encontrada");
       }
@@ -114,7 +120,7 @@ function ManageProject() {
       const timer = setTimeout(() => {
         setErrorMessage(null);
         setMessage(null);
-      }, 5000);
+      }, 7000);
 
       return () => clearTimeout(timer);
     }
