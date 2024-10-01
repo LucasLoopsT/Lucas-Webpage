@@ -1,4 +1,21 @@
 import { createGlobalStyle } from "styled-components";
+import styled, { keyframes } from 'styled-components';
+
+// Definindo a animação de fade in e fade out
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
 
 export default createGlobalStyle`
     *{
@@ -8,8 +25,8 @@ export default createGlobalStyle`
     }
 
     body{
-        background-color: ${({theme}) => theme.COLORS.bg};
-        color: ${({theme}) => theme.COLORS.WHITE};
+        background-color: ${({ theme }) => theme.COLORS.bg};
+        color: ${({ theme }) => theme.COLORS.WHITE};
         -webkit-font-smoothing: antileased;
     }
 
@@ -47,5 +64,27 @@ export default createGlobalStyle`
     button, a{
         cursor: pointer;
         text-decoration: none;
+    }
+
+    .message,
+    .error-message {
+        position: fixed;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        text-align: center;
+        width: 45%;
+        background-color: #53ff81;
+        color: #0b501d;
+        border-radius: 5px;
+        padding: 15px 20px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        animation: ${fadeInOut} 3s ease-in-out forwards;
+    }
+
+    .error-message {
+        background-color: #ff5353;
+        color: #500b0b;
     }
 `;

@@ -1,4 +1,4 @@
-import { act, useEffect, useState } from 'react';
+import { act, useEffect, useLayoutEffect, useState } from 'react';
 import Cookies from "js-cookie";
 import { findAll, create } from "../../services/projectServices.js"
 
@@ -30,6 +30,8 @@ const projectSchema = z.object({
 
 function ManageProject() {
   const [action, setAction] = useState('');
+  const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const token = Cookies.get("token");
 
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -50,7 +52,8 @@ function ManageProject() {
         console.log(action);
         console.log(data);
         const project = await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
-        return console.log(project);
+        setMessage(`Created: ${project.name}`);
+        setErrorMessage(null);
 
       } else if (action === "Update"){
         console.log(action);
@@ -64,15 +67,31 @@ function ManageProject() {
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        alert(error.response.data.message);
+        setErrorMessage(error.response.data.message);
+        setMessage(null);
       } else {
-        alert(`Ocorreu um erro ao executar ${action} do projeto.`);
+        setErrorMessage(`Ocorreu um erro ao executar ${action} do projeto.`);
+        setMessage(null);
       }
     }
   }
 
+  useLayoutEffect(() => {
+    if (errorMessage || message) {
+      const timer = setTimeout(() => {
+        setErrorMessage(null);
+        setMessage(null);
+      }, 5000);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage, message]);
+
   return (
     <Container>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {message && <p className="message">{message}</p>}
+
       <Form className="Section">
         <div className="title">
           <h2>Manage Projects</h2>

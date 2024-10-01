@@ -19,18 +19,6 @@ export const Container = styled.div`
             text-align: center;
         }
     }
-
-    .error-message {
-        width: 35%;
-        text-align: center;
-        background-color: #ff5353;
-        color: #500b0b;
-        border-radius: 5px;
-        padding: 10px 15px;
-    }
-
-    .error-message.show {
-    }
 `
 
 export const Form = styled.div`
