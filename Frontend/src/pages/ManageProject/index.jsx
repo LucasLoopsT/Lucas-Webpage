@@ -1,6 +1,6 @@
 import { act, useEffect, useLayoutEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { create, findAll, update, deleteProject } from "../../services/projectServices.js"
+import { create, findAll, findById, update, deleteProject } from "../../services/projectServices.js"
 
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
@@ -29,24 +29,54 @@ const projectSchema = z.object({
 });
 
 function ManageProject() {
-  const [projects, setProjects] = useState([]); 
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [selectedProjectID, setSelectedProjectID] = useState(null);
+  const [previewData, setPreviewData] = useState({
+    name: "Project X",
+    preview: img_Default,
+    shortDescription: "Short description",
+    description: "Full description",
+    link_git: "#",
+    link_deploy: "#",
+    techs: []
+  });
   const [action, setAction] = useState('');
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const token = Cookies.get("token");
 
-  const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, setValue, formState: { errors }, reset, getValues } = useForm({
     resolver: zodResolver(projectSchema),
   });
 
   const handleActionChange = (e) => {
     setAction(e.target.value);
+    setSelectedProjectID(""); 
+    setPreviewData({
+      name: "Project X",
+      preview: img_Default,
+      shortDescription: "Short description",
+      description: "Full description",
+      link_git: "#",
+      link_deploy: "#",
+      techs: []
+    });
+    findAllProjects();
     reset();
   };
 
   const handlePreview = () => {
-    alert("project preview");
+    const formData = getValues(); 
+
+    setPreviewData({
+      name: formData.name || "Project X",
+      preview: formData.preview || img_Default,
+      shortDescription: formData.shortDescription || "Short description",
+      description: formData.description || "Full description",
+      techs: formData.techs || [],
+      link_git: formData.link_git || "#",
+      link_deploy: formData.link_deploy || "#"
+    });
   }
 
   const findAllProjects = async () => {
@@ -63,11 +93,11 @@ function ManageProject() {
   };
 
   const handleSelectProject = (event) => {
-    const projectId = event.target.value;
-    const project = projects.find(p => p._id === projectId);
-    setSelectedProject(projectId);
+    const id = event.target.value;
+    setSelectedProjectID(id);
+    const project = projects.find(p => p._id === id);
 
-    if (project) {      
+    if (project != null) {
       setValue("name", project.name);
       setValue("preview", project.preview);
       setValue("shortDescription", project.shortDescription);
@@ -85,24 +115,26 @@ function ManageProject() {
         await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
         setMessage(`Created: ${data.name}`);
         setErrorMessage(null);
+        handlePreview();
 
         reset();
 
       } else if (action === "Update") {
-        const project = await update(token, selectedProject, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        const project = await update(token, selectedProjectID, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
         setMessage(project.data.message);
         setErrorMessage(null);
 
       } else if (action === "Delete") {
-        const project = await deleteProject(token, selectedProject);
+        const project = await deleteProject(token, selectedProjectID);
         setMessage(project.data.message);
         setErrorMessage(null);
-
+        handleActionChange("Delete")
         reset();
         findAllProjects();
-        
+        handlePreview();
+
       } else {
-        console.log("função não encontrada");
+        setErrorMessage("Função não encontrada");
       }
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
@@ -144,32 +176,36 @@ function ManageProject() {
         <div id="content">
           <Preview>
             <div id="img_preview">
-              <h3>Project X</h3>
-              <img src={img_Default} alt="" />
-              <p className="field">ABC</p>
-              <p className="field">ABCDEF</p>
-              <div className="field" id="techs_preview">
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={40} />
-                <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
-              </div>
-              <a className="field" href='#'> <FaGithub /> See the repository</a>
-              <a className="field" href='#'> <LuExternalLink /> See the project</a>
+              <>
+                <h3>{previewData.name}</h3>
+                <img src={previewData.preview} alt={previewData.name} />
+                <p className="field">{previewData.shortDescription}</p>
+                <p className="field">{previewData.description}</p>
+                <div className="field" id="techs_preview">
+                  {previewData.techs.map((tech) => (
+                    <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={40} />
+                  ))}
+                </div>
+                <a className="field" href={previewData.link_git}>
+                  <FaGithub /> See the repository
+                </a>
+                <a className="field" href={previewData.link_deploy}>
+                  <LuExternalLink /> See the project
+                </a>
+              </>
             </div>
-            {(action != "Delete") && (
-              <Button type={'submit'} text={'Preview'} onClick={handlePreview} />
-            )}
+            <Button type={'button'} text={'Preview'} onClick={handlePreview} />
           </Preview>
-
           <form id="formulario" onSubmit={handleSubmit(handleSendProject)}>
             <div className="div_Select">
               <label htmlFor='action'>Action</label>
-              <select required id="action" name="action" value={action} onChange={handleActionChange}>
+              <select 
+                id="action" 
+                name="action" 
+                value={action} 
+                onChange={handleActionChange}
+                required 
+              >
                 <option value="" disabled>Select</option>
                 <option value="Create">Create</option>
                 <option value="Update">Update</option>
@@ -180,10 +216,16 @@ function ManageProject() {
             {(action === "Update" || action === "Delete") && (
               <div className="div_Select">
                 <label htmlFor='AllProjects'>Select the project</label>
-                <select id="AllProjects" name="AllProjects" onChange={handleSelectProject}>
-                  <option value="" disabled selected>Select</option>
+                <select 
+                  id="AllProjects" 
+                  name="AllProjects" 
+                  value={selectedProjectID}
+                  onChange={handleSelectProject}
+                  required
+                >
+                  <option value="" disabled>Select</option>
                   {projects.map((project) => (
-                    <option value={project._id}>{project.name}</option>
+                    <option key={project._id} value={project._id}>{project.name}</option>
                   ))}
                 </select>
               </div>
