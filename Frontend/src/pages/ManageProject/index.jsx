@@ -128,7 +128,6 @@ function ManageProject() {
         const project = await deleteProject(token, selectedProjectID);
         setMessage(project.data.message);
         setErrorMessage(null);
-        handleActionChange("Delete")
         reset();
         findAllProjects();
         handlePreview();
