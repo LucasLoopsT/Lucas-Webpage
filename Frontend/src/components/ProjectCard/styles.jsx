@@ -6,29 +6,24 @@ export const Container = styled.article`
     flex-direction: column;
     align-items: center;
 
-    min-width: 200px;
-    max-width: 280px;
-    min-height: 400px;
-    max-height: 405px;
-    
-    background-color: ${({theme}) => theme.COLORS.bg_light};
+    width: 80%;
+    max-width: 480px;
+
     border: ${({theme}) => theme.COLORS.color_2} 2px solid;
     border-radius: 30px;
     transition: 0.4s ease;
 
     #details{
-        min-width: 100%;
-        max-width: 100%;
-        min-height: 200px;
-        max-height: 205px;
-        background-color: ${({theme}) => theme.COLORS.bg_light};
+        width: 100%;
+        height: 100%;
+        background-color: ${({theme}) => theme.COLORS.bg};
         border-radius: 0 0 30px 30px;
         padding: 30px 0;
     }
 
     #details h2{
         text-align: start;
-        color: ${({theme}) => theme.COLORS.bg_dark};
+        color: black;
         padding-left: 30px;
         transition: 200ms 0.1s ease;
         font-size: 25px;
@@ -45,7 +40,7 @@ export const Container = styled.article`
 
         font-size: 20px;
         text-align: start;
-        color: ${({theme}) => theme.COLORS.bg_dark};
+        color: black;
         padding: 30px;
         transition: 200ms 0.1s ease;
     }

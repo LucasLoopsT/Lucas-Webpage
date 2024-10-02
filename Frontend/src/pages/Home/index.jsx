@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { findAll } from '../../services/projectServices.js';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
@@ -8,75 +9,47 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Lucas from '../../assets/Lucas.png';
 
 function Home() {
-  // Lista de projetos (futuramente dados virão de um banco de dados)
-  const allProjects = [
-    {
-      id: 1,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 1",
-      description: "Vite + React Single Page Application",
-    },
-    {
-      id: 2,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 2",
-      description: "Vite + React Single Page Application",
-    },
-    {
-      id: 3,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 3",
-      description: "Vite + React Single Page Application",
-    },
-    {
-      id: 4,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 4",
-      description: "Vite + React Single Page Application",
-    },
-    {
-      id: 5,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 5",
-      description: "Vite + React Single Page Application",
-    },
-    {
-      id: 6,
-      imgurl: "https://www.syntonize.com/wp-content/uploads/2021/02/React-Syntonize.png",
-      projectName: "Portfolio 6",
-      description: "Vite + React Single Page Application",
-    },
+  const [projects, setProjects] = useState([]); 
 
-  ];
+  const findAllProjects = async () => {
+    try {
+      const response = await findAll();
+      setProjects(response.data)
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        console.log(error.response.data.message);
+      } else {
+        console.log("Erro ao buscar projetos.");
+      }
+    }
+  };
 
   // Reponsive Slider Config
-  const [slidePerView, setSlidePerView] = useState(3)
+  const [slidePerView, setSlidePerView] = useState(2)
 
   useEffect(() => {
 
     function handleRecize() {
-      // Projects Display
-      if (window.innerWidth < 2000) {
-        setSlidePerView(3)
-      }
       if (window.innerWidth < 2000) {
         setSlidePerView(2)
-      } if (window.innerWidth < 700) {
+      } if (window.innerWidth < 780) {
         setSlidePerView(1)
       }
     }
+    findAllProjects();
 
-    handleRecize()
+    handleRecize();
 
     window.addEventListener("resize", handleRecize)
     return () => {
       window.removeEventListener("resize", handleRecize)
     }
+
   }, [])
 
   return (
-    <Container id="about">
-      <Hello className='Section'>
+    <Container>
+      <Hello className='Section' id="about">
         <Paragraph>
           <h3>hi guys, i’m:</h3>
           <h1>Lucas Lopes</h1>
@@ -120,13 +93,13 @@ function Home() {
           pagination={{ clickable: true }}
           navigation
         >
-          {allProjects.map((project) => (
-            <SwiperSlide key={project.id}>
+          {projects.map((project) => (
+            <SwiperSlide>
               <ProjectCard
-                imgurl={project.imgurl}
-                projectName={project.projectName}
-                description={project.description}
-                alt={project.projectName}
+                projectName={project.name}
+                imgurl={project.preview}
+                description={project.shortDescription}
+                alt={project.name}
               />
             </SwiperSlide>
           ))}

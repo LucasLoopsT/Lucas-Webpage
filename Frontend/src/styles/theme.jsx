@@ -2,6 +2,7 @@ export default {
     COLORS:{
         bg:"#202020",  
         bg_light:"#3b3b3b",  
+        bg_light2:"#555555",  
         bg_dark: "#101010",  
         bg_dark_70: "#101010b0",  
         
