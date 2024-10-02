@@ -9,30 +9,14 @@ const Header = () => {
     const navigate = useNavigate();
     const token = Cookies.get("token");
 
-    // Função para navegação para About (raiz "/")
-    function goToAbout() {
-        const element = document.querySelector("#about");
-        if (element) {
-            navigate("/");
-            element.scrollIntoView({ behavior: 'smooth' });
-        }    
-    }
-
-    // Função para navegação até a seção de Projetos
-    function goToProjects() {
-        const element = document.querySelector("#projects");
-        if (element) {
-            navigate("/");
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // Função para navegação até a seção de Contato
-    function goToContact() {
-        const element = document.querySelector("#contact");
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+    function goTo(id) {
+        navigate("/");
+        setTimeout(() => {
+            const element = document.querySelector(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }  
+        }, 10);
     }
 
     function signOut(){
@@ -52,9 +36,9 @@ const Header = () => {
                         <span></span>
                     </div>
                     <ul>
-                        <li onClick={goToAbout}>About</li>
-                        <li onClick={goToProjects}>Projects</li>
-                        <li onClick={goToContact}>Contact</li>                        
+                        <li onClick={() => goTo("#about")}>About</li>
+                        <li onClick={() => goTo("#projects")}>Projects</li>
+                        <li onClick={() => goTo("#contact")}>Contact</li>                        
                         {token && (
                             <li>
                                 <FaSignOutAlt id="signOut" onClick={signOut} />
