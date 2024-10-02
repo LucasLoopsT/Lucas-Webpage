@@ -1,4 +1,4 @@
-import { useState } from 'react'; // Adicione useState
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../services/userServices.js";
 
@@ -17,15 +17,15 @@ import { RiLockPasswordLine } from "react-icons/ri";
 
 // Esquema de validação usando Zod
 const loginSchema = z.object({
-  email: z.string().nonempty("O e-mail é obrigatório"),
-  password: z.string().nonempty("A senha é obrigatória"),
+  email: z.string(),
+  password: z.string(),
 });
 
 function Login() {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState(null); // Estado para armazenar mensagem de erro
+  const [errorMessage, setErrorMessage] = useState(null); 
+  const [message, setMessage] = useState(null);
 
-  // useForm para gerenciar o formulário e validação
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(loginSchema),
   });
@@ -33,17 +33,31 @@ function Login() {
   const handleLogin = async (data) => {
     try {
       const response = await login(data.email, data.password);
-      console.log("Login bem-sucedido:", response);
+      setMessage("Login bem-sucedido:", response);
+      setErrorMessage(null);
       navigate("/manage");
       Cookies.set('token', response.data.token, {expires: 1});
     } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
           setErrorMessage(error.response.data.message);
+          setMessage(null);
         } else {
-          setErrorMessage("Ocorreu um erro ao fazer login.");
+          setErrorMessage("Error on login user");
+          setMessage(null);
         }
     }
   };
+
+  useEffect(() => {
+    if (errorMessage || message) {
+      const timer = setTimeout(() => {
+        setErrorMessage(null);
+        setMessage(null);
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage, message]);
 
   return (
     <Container>
