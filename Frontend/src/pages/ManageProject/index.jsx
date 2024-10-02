@@ -82,7 +82,7 @@ function ManageProject() {
   const handleSendProject = async (data) => {
     try {
       if (action === "Create") {
-        const project = await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
         setMessage(`Created: ${data.name}`);
         setErrorMessage(null);
 
