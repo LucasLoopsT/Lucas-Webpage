@@ -1,11 +1,48 @@
 import { useEffect, useState } from 'react';
+import {findById} from "../../services/projectServices.js";
+import { useProject } from '../../services/ProjectContext.jsx';
+
 import { Preview } from './styles.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
-import img_Default from "../../assets/Preview_Default.png"
+import img_Default from "../../assets/Preview_Default.png";
 // Icons
 import { LuExternalLink} from "react-icons/lu";
 
 function ProjectView() {
+  const { projectId } = useProject();
+  const [project, setProject] = useState({
+    name: "Project X",
+    preview: img_Default,
+    shortDescription: "Short description",
+    description: "Full description",
+    link_git: "#",
+    link_deploy: "#",
+    techs: []
+  });
+
+  const findProject = async (id) => {
+    try{
+      alert("Details Context: " + id)
+
+      // setProject({
+      //   name: project.name || "Project X",
+      //   preview: project.preview || img_Default,
+      //   shortDescription: project.shortDescription || "Short description",
+      //   description: project.description || "Full description",
+      //   techs: project.techs || [],
+      //   link_git: project.link_git || "#",
+      //   link_deploy: project.link_deploy || "#"
+      // });
+
+    } catch(error) {
+
+    }
+  }
+
+  useEffect(() => {
+    findProject(projectId);
+  },[])
+
   return (
     <>
       <Preview>
