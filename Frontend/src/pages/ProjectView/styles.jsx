@@ -27,6 +27,7 @@ export const Preview = styled.div`
         max-width: 70%;
         max-height: 30%;
         object-fit: contain;
+        border-radius: 30px;
     }
 
     .field{
