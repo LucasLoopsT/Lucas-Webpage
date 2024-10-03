@@ -79,8 +79,8 @@ function ProjectView() {
             <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={60} />
           ))}
         </div>
-        <a className="field" href={project.link_git}> <FaGithub /> See the repository </a>
-        <a className="field" href={project.link_deploy}> <LuExternalLink /> See the project</a>
+        <a className="field" href={project.link_git} target='_blank'> <FaGithub /> See the repository </a>
+        <a className="field" href={project.link_deploy} target='_blank'> <LuExternalLink /> See the project</a>
       </Preview>
     </>
   );

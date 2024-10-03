@@ -185,10 +185,10 @@ function ManageProject() {
                     <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={40} />
                   ))}
                 </div>
-                <a className="field" href={previewData.link_git}>
+                <a className="field" href={previewData.link_git} target='_blank'>
                   <FaGithub /> See the repository
                 </a>
-                <a className="field" href={previewData.link_deploy}>
+                <a className="field" href={previewData.link_deploy} target='_blank'>
                   <LuExternalLink /> See the project
                 </a>
               </>
