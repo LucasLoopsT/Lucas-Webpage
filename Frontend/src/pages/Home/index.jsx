@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useProject } from '../../services/ProjectContext.jsx';
 import { findAll } from '../../services/projectServices.js';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
 import TechIcons from '../../components/TechIcons/index.jsx';
@@ -9,6 +11,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Lucas from '../../assets/Lucas.png';
 
 function Home() {
+  const navigate = useNavigate();
+  const { setProjectId } = useProject();
   const [projects, setProjects] = useState([]); 
 
   const findAllProjects = async () => {
@@ -23,6 +27,11 @@ function Home() {
       }
     }
   };
+
+  const openProject = (id) => {
+    setProjectId(id); 
+    navigate('/projeto');
+  }
 
   // Reponsive Slider Config
   const [slidePerView, setSlidePerView] = useState(2)
@@ -94,7 +103,7 @@ function Home() {
           navigation
         >
           {projects.map((project) => (
-            <SwiperSlide>
+            <SwiperSlide key={project._id} onClick={() => openProject(project._id)}>
               <ProjectCard
                 projectName={project.name}
                 imgurl={project.preview}
