@@ -69,7 +69,9 @@ function ProjectView() {
       <Preview>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <h2>{project.name}</h2>
-        <img src={project.preview} alt={project.name}/>
+        <div id="img_preview">
+          <img src={project.preview} alt={project.name}/>
+        </div>
         <p className="field">{project.shortDescription}</p>
         <p className="field">{project.description}</p>
         <div className="field" id="techs_preview">
@@ -77,8 +79,8 @@ function ProjectView() {
             <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={60} />
           ))}
         </div>
-        <a className="field" href={project.link_deploy}> <LuExternalLink /> See the project</a>
         <a className="field" href={project.link_git}> <FaGithub /> See the repository </a>
+        <a className="field" href={project.link_deploy}> <LuExternalLink /> See the project</a>
       </Preview>
     </>
   );

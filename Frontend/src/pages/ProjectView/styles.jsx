@@ -17,13 +17,16 @@ export const Preview = styled.div`
     }
 
     #img_preview{
+        display: flex;
+        justify-content: center;
         width: 100%;
-        min-height: 300px;
+        height: 50%;
     }
-
+    
     #img_preview img{
-        width: 100%;
-        height: 100%;
+        max-width: 70%;
+        max-height: 30%;
+        object-fit: contain;
     }
 
     .field{
@@ -31,7 +34,7 @@ export const Preview = styled.div`
         padding: 20px 10px;
         border: 3px solid ${({theme}) => theme.COLORS.bg};
         border-radius: 20px;
-        margin: 40px auto;
+        margin: 15px auto;
         font-size: 20px;
     }
 
@@ -40,9 +43,13 @@ export const Preview = styled.div`
         justify-content: center;
         flex-wrap: wrap;
         gap: 10px;
-
+        
         > li{
             cursor: default;
+        }
+        img{
+            filter: grayscale(0)!important;
+            
         }
     }
 
