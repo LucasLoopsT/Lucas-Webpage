@@ -9,7 +9,6 @@ import ProjectView from './pages/ProjectView'
 import Login from './pages/Login/index.jsx';
 import ManageProject from './pages/ManageProject/index.jsx';
 import ProtectedRoute from './services/ProtectedRoute.jsx';
-import { ProjectProvider } from './services/ProjectContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,13 +38,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-], { basename: "/Lucas-Webpage" } // Definindo o subdiretório
+], { basename: "/Lucas-Webpage" }
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ProjectProvider>
-      <RouterProvider router={router} />
-    </ProjectProvider>,
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

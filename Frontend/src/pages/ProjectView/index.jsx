@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {findById} from "../../services/projectServices.js";
-// import { useProject } from '../../services/ProjectContext.jsx';
 import Cookies from 'js-cookie';
 
 import { Preview } from './styles.jsx';
@@ -11,7 +10,6 @@ import { LuExternalLink} from "react-icons/lu";
 import { FaGithub} from "react-icons/fa";
 
 function ProjectView() {
-  // const { projectId } = useProject();
   const [project, setProject] = useState({
     name: "Project X",
     preview: img_Default,
