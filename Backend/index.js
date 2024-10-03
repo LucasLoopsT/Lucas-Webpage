@@ -10,7 +10,7 @@ const app = express();
 connectDatabase();
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'https://lucasloopst.github.io'
   }));
 
 app.use(express.json());
