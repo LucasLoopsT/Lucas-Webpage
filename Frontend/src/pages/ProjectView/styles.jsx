@@ -46,7 +46,7 @@ export const Preview = styled.div`
         }
     }
 
-    a:last-child{
+    a{
         display: block;
         text-align: center;
         width: 40%;
@@ -56,7 +56,7 @@ export const Preview = styled.div`
         transition: all 200ms ease;
     }
 
-    a:last-child:hover{
+    a:hover{
         color: ${({ theme }) => theme.COLORS.color_2};
         text-decoration: underline;
     }

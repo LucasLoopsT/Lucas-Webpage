@@ -16,12 +16,8 @@ export function findAll(){
     return response;
 }
 
-export function findById(token, id){
-    const response = axios.get(`${baseURL}/project/${id}`, {
-        headers: {
-            authorization: `Bearer ${token}`
-        }
-    });
+export function findById(id){
+    const response = axios.get(`${baseURL}/project/${id}`);
     return response;
 }
 

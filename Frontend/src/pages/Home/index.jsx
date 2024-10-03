@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProject } from '../../services/ProjectContext.jsx';
+// import { useProject } from '../../services/ProjectContext.jsx';
+import Cookies from 'js-cookie';
+
 import { findAll } from '../../services/projectServices.js';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
 import TechIcons from '../../components/TechIcons/index.jsx';
@@ -12,7 +14,7 @@ import Lucas from '../../assets/Lucas.png';
 
 function Home() {
   const navigate = useNavigate();
-  const { setProjectId } = useProject();
+  // const { setProjectId } = useProject();
   const [projects, setProjects] = useState([]); 
 
   const findAllProjects = async () => {
@@ -28,8 +30,9 @@ function Home() {
     }
   };
 
-  const openProject = (id) => {
-    setProjectId(id); 
+  const openProject = (projectId) => {
+    Cookies.set('projectId', projectId, { expires: 1 });
+    // setProjectId(id); 
     navigate('/projeto');
   }
 
