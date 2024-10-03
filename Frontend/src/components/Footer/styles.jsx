@@ -5,6 +5,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     max-width: 1300px;
+    width: 90%;
     min-height: 20vh;
     height: 30vh;
     max-height: 35vh;
@@ -13,17 +14,17 @@ export const Container = styled.div`
     
     footer{
         min-width: 250px;
-        width: 90%;
+        width: 100%;
         max-width: 1300px;
         min-height: 190px;
-        max-height: 190px;
+        max-height: 245px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         background-color: ${({theme}) => theme.COLORS.bg_dark};
         border: 2px solid ${({theme}) => theme.COLORS.bg}; 
-        border-radius: 15px;
+        border-radius: 40px;
     }
     
     img{
@@ -39,6 +40,7 @@ export const Container = styled.div`
 
     p{
         padding: 15px;
+        text-align: center;
     }
 
     a{
