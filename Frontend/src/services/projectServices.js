@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3000";
+const baseURL = "https://lucas-webpage.onrender.com";
 
 export function create(token, name, preview, shortDescription, description, techs, link_git, link_deploy){
     const response = axios.post(`${baseURL}/project/`, {name, preview, shortDescription, description, techs, link_git, link_deploy}, {
