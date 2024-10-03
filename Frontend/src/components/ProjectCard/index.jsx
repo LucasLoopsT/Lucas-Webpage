@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import { Container, ImageContainer } from './styles'
 
-function ProjectCard({imgurl, projectName, description}) {
-  const [count, setCount] = useState(0)
+function ProjectCard({imgurl, projectName, description, ...rest}) {
   return (
-    <Container>
+    <Container {...rest}>
       <ImageContainer id="img" imgurl={imgurl}/>
       <div id="details">
         <h2>{projectName}</h2>

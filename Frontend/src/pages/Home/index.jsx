@@ -103,8 +103,10 @@ function Home() {
           navigation
         >
           {projects.map((project) => (
-            <SwiperSlide key={project._id} onClick={() => openProject(project._id)}>
+            <SwiperSlide>
               <ProjectCard
+                key={project._id} 
+                onClick={() => openProject(project._id)}
                 projectName={project.name}
                 imgurl={project.preview}
                 description={project.shortDescription}
