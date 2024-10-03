@@ -26,6 +26,12 @@ export const Hello = styled.section`
     justify-content: space-between;
     align-items: center;
     width: 90%;
+    
+    @media screen and (max-width: 995px) {
+        flex-direction: column;
+        gap: 50px;
+        
+    }
 `
 
 export const Paragraph = styled.div`
@@ -68,7 +74,6 @@ export const Perfil = styled.div`
     
     #square{
         width: 100%;
-        min-width: 400px;
         max-width: 400px;
         height: 100%;
         position: absolute;
@@ -87,6 +92,35 @@ export const Perfil = styled.div`
         top: 60px;
         z-index: -1;
     }
+
+    @media screen and (max-width: 995px) {
+        justify-content: center;
+        width: 100%;
+
+        img{
+            width: 325px;
+            height: 325px;
+            margin: 0;
+        }
+        
+        #square{
+            padding: 0;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+    
+        img{
+            max-width: 250px;
+            max-height: 250px;
+        }
+
+        #square div{
+            width: 160px;
+            height: 160px;
+            top: 0;
+        }
+    }
 `
 
 export const Tech = styled.section`
@@ -97,7 +131,7 @@ export const Tech = styled.section`
         align-items: end;
         flex-wrap: wrap;
         max-width: 70%;
-        min-width: 340px;
+        min-width: 165px;
         gap: 20px;
         margin: 0 auto;
     }
@@ -110,13 +144,8 @@ export const Projects = styled.section`
     flex-wrap: wrap;
     gap: 25px;
 
-    min-width: 340px;
     width: 90%;
     max-width: 1300px;
-    min-height: auto;
-    min-height: 800px;
-    height: auto;
-    max-height: 900px;
     padding: 50px 15px;
     margin: 0 auto;
 
@@ -184,13 +213,10 @@ export const Contact = styled.div`
         border: 3px solid ${({ theme }) => theme.COLORS.bg_dark};
     }
 
-    ul{
-       display: flex; 
-       justify-content: center;
-       flex-wrap: wrap;
-       gap: 25px;
-       max-width: 100%;
-       margin-top: 25px;
+    div{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: 10px;
     }
     
     li img {
@@ -211,7 +237,6 @@ export const Contact = styled.div`
         right: 0px;
         bottom: 0px;
         left: 0px;
-        width: 100%;
     }
     
     .midiaText p{
@@ -232,6 +257,8 @@ export const Contact = styled.div`
         cursor: pointer;
         font-size: 20px;
         color: transparent;
+        border-bottom: 2px solid transparent;
+        transition:  border-bottom 200ms 100ms ease-in; 
     }
     
     .socialMidia li{
@@ -243,28 +270,94 @@ export const Contact = styled.div`
         transition: all ease 500ms;
     }
 
+    a:nth-child(1) .socialMidia:hover li {
+        background-color: #461b59;
+    }
+
+    a:nth-child(2) .socialMidia:hover li{
+        background-color: #162758;
+    }
+
+    a:nth-child(3) .socialMidia:hover li{
+        background-color: #544200;
+    }
+
+    a:nth-child(4) .socialMidia:hover li{
+        background-color: #313131;
+    }
+
    .socialMidia:hover{
 
-    > li{
-        background-color: ${({ theme }) => theme.COLORS.bg_light};
+        > li img {
+            width: 80px;
+            height: 80px;
+            border-radius: 100px;
+            filter: grayscale(0);
+        }
+
+        > .midiaText h3{
+            color: white;
+            border-bottom: 2px solid white;
+        }
+
+        > .midiaText p{
+            color: white;
+        }
     }
 
-    > li img {
-        width: 80px;
-        height: 80px;
-        border-radius: 100px;
-        filter: grayscale(0);
+    @media screen and (max-width: 1080px) {
+        div{
+        grid-template-columns: repeat(2, 1fr);
+        }
     }
 
-    > .midiaText h3{
-        color: ${({ theme }) => theme.COLORS.color_1};
-        color: white;
+    @media screen and (max-width: 700px) {
+
+        a:nth-child(1) li{
+            background-color: #461b59;
+        }
+
+        a:nth-child(2) li{
+            background-color: #162758;
+        }
+
+        a:nth-child(3) li{
+            background-color: #544200;
+        }
+
+        a:nth-child(4) li{
+            background-color: #313131;
+        }
+
+        .socialMidia{
+        
+            > li img {
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+                filter: grayscale(0);
+            }
+
+            > .midiaText h3{
+                color: ${({ theme }) => theme.COLORS.color_1};
+                color: white;
+            }
+
+            > .midiaText p{
+                color: white;
+            }
+        }
     }
 
-    > .midiaText p{
-        color: ${({ theme }) => theme.COLORS.color_2};
+    @media screen and (max-width: 550px) {
+
+        .midiaText p, .midiaText h3{
+            font-size: 18px;
+        }
+        
+        div{
+        grid-template-columns: repeat(1, 1fr);
+        }
     }
-    
-}
 
 `;

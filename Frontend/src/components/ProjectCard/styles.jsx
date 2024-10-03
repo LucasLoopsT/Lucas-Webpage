@@ -24,15 +24,12 @@ export const Container = styled.article`
     #details h2{
         text-align: start;
         color: black;
-        padding-left: 30px;
+        padding: 0 30px;
         transition: 200ms 0.1s ease;
         font-size: 25px;
     }
 
     #details p{
-        width: 275px;
-        max-width: 275px;
-
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;

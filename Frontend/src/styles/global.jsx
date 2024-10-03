@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import styled, { keyframes } from 'styled-components';
+import { keyframes } from 'styled-components';
 
 // Definindo a animação de fade in e fade out
 const fadeInOut = keyframes`
@@ -86,5 +86,23 @@ export default createGlobalStyle`
     .error-message {
         background-color: #ff5353;
         color: #500b0b;
+    }
+
+    @media screen and (max-width: 550px) {
+        h1{
+            font-size: 60px!important;   
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        p{
+            font-size: 18px;
+        }
     }
 `;

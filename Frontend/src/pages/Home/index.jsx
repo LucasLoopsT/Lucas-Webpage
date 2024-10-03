@@ -112,7 +112,7 @@ function Home() {
           <p>These are social midias and other websites you can find me!</p>
         </div>
         <hr />
-        <ul>
+        <div>
           <a href='https://www.instagram.com/lucas_loopst/' target='_blank'>
             <div className="socialMidia">
               <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={240} title={"Instagram"} alt={"Instagram"} />
@@ -157,7 +157,7 @@ function Home() {
               </div>
             </div>
           </a>
-        </ul>
+        </div>
       </Contact>
     </Container>
   );
