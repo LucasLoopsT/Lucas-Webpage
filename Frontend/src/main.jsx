@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, RouterProvider, HashRouter, createHashRouter } from "react-router-dom"
 
 //Pages
 import Home from './pages/Home/index.jsx';
@@ -10,7 +10,7 @@ import Login from './pages/Login/index.jsx';
 import ManageProject from './pages/ManageProject/index.jsx';
 import ProtectedRoute from './services/ProtectedRoute.jsx';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-], { basename: "/Lucas-Webpage" }
+], { basename: "/" }
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
