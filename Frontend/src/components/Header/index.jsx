@@ -17,6 +17,11 @@ const Header = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
             }  
         }, 10);
+        
+        const checkbox = document.querySelector("#menu-faketrigger");
+        if (checkbox.checked) {
+          checkbox.checked = false;
+        }
     }
 
     function signOut(){
