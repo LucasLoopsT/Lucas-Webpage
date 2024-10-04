@@ -8,7 +8,8 @@ export const Container = styled.article`
 
     width: 80%;
     max-width: 480px;
-
+    height: 100%;
+    
     border: ${({theme}) => theme.COLORS.color_2} 2px solid;
     border-radius: 30px;
     transition: 0.4s ease;
@@ -54,6 +55,18 @@ export const Container = styled.article`
     
         >#details h2,#details p{
             color: white;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        #details h2,#details p{
+            color: white;
+        }
+
+        &:hover{
+            #details h2,#details p{
+                color: ${({theme}) => theme.COLORS.color_1};
+            }
         }
     }
 `

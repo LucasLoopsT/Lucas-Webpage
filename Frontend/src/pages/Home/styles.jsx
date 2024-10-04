@@ -198,6 +198,7 @@ export const Projects = styled.section`
         display: flex;
         justify-content: center;
         align-items: center;
+        height: unset;
     }
 
     #swiper-loading{
