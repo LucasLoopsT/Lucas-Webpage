@@ -32,6 +32,10 @@ function Home() {
   const openProject = (projectId) => {
     Cookies.set('projectId', projectId, { expires: 1 });
     navigate('/projeto');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   // Reponsive Slider Config
