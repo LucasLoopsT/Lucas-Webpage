@@ -6,6 +6,7 @@ import { findAll } from '../../services/projectServices.js';
 import { Container, Hello, Paragraph, Perfil, Tech, Projects, Contact } from './styles';
 import TechIcons from '../../components/TechIcons/index.jsx';
 import ProjectCard from '../../components/ProjectCard/index.jsx';
+import Preview_Default from '../../assets/Preview_Default.png';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -13,7 +14,7 @@ import Lucas from '../../assets/Lucas.png';
 
 function Home() {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]); 
+  const [projects, setProjects] = useState([]);
 
   const findAllProjects = async () => {
     try {
@@ -97,24 +98,43 @@ function Home() {
           <p>Check it out some projects that i made or participate! I'm sure you will enjoy.</p>
         </div>
         <hr />
-        <Swiper
-          slidesPerView={slidePerView}
-          pagination={{ clickable: true }}
-          navigation
-        >
-          {projects.map((project) => (
-            <SwiperSlide>
+        {projects.length > 0 ? (
+          <Swiper
+            slidesPerView={slidePerView}
+            pagination={{ clickable: true }}
+            navigation
+          >
+            {projects.map((project) => (
+              <SwiperSlide>
+                <ProjectCard
+                  key={project._id}
+                  onClick={() => openProject(project._id)}
+                  projectName={project.name}
+                  imgurl={project.preview}
+                  description={project.shortDescription}
+                  alt={project.name}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <Swiper
+            slidesPerView={slidePerView}
+            pagination={{ clickable: true }}
+            navigation
+            id="swiper-loading"
+          >
+            <SwiperSlide id="swiper-slide-loading">
               <ProjectCard
-                key={project._id} 
-                onClick={() => openProject(project._id)}
-                projectName={project.name}
-                imgurl={project.preview}
-                description={project.shortDescription}
-                alt={project.name}
+                projectName={"Loading ⟳"}
+                imgurl={Preview_Default}
+                description={"Searching projects..."}
+                alt={"↻"}
+                id="loading-card"
               />
             </SwiperSlide>
-          ))}
-        </Swiper>
+          </Swiper>
+        )}
       </Projects>
 
       <Contact className='Section' id="contact">

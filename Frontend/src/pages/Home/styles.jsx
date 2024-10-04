@@ -199,6 +199,19 @@ export const Projects = styled.section`
         justify-content: center;
         align-items: center;
     }
+
+    #swiper-loading{
+        width: 100%!important;
+    }
+
+    #swiper-slide-loading{
+        width: 100%!important;
+    }
+
+    #loading-card img{
+        width: 100%!important;
+
+    }
 `
 
 export const Contact = styled.div`
