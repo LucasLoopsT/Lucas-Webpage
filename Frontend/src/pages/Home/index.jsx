@@ -148,9 +148,9 @@ function Home() {
             <div className="socialMidia">
               <TechIcons imgurl={"https://skillicons.dev/icons?i=instagram"} sizeicon={240} title={"Instagram"} alt={"Instagram"} />
               <div className='midiaText'>
-                <p>&lt;p&gt;</p>
+                <p className='tag'>&lt;p&gt;</p>
                 <p>I’m low-profile, but you can still find me there.</p>
-                <p>&lt;/p&gt;</p>
+                <p className='tag'>&lt;/p&gt;</p>
                 <h3>Instagram</h3>
               </div>
             </div>
@@ -159,9 +159,9 @@ function Home() {
             <div className="socialMidia">
               <TechIcons imgurl={"https://skillicons.dev/icons?i=linkedin"} sizeicon={240} title={"Linkedin"} alt={"Linkedin"} />
               <div className='midiaText'>
-                <p>&lt;p&gt;</p>
+                <p className='tag'>&lt;p&gt;</p>
                 <p>Let's connect professionally!</p>
-                <p>&lt;/p&gt;</p>
+                <p className='tag'>&lt;/p&gt;</p>
                 <h3>Linkedin</h3>
               </div>
             </div>
@@ -170,9 +170,9 @@ function Home() {
             <div className="socialMidia">
               <TechIcons imgurl={"https://skillicons.dev/icons?i=gmail"} sizeicon={240} title={"Gmail"} alt={"Gmail"} />
               <div className='midiaText'>
-                <p>&lt;p&gt;</p>
+                <p className='tag'>&lt;p&gt;</p>
                 <p>Reach out for collaborations via email.</p>
-                <p>&lt;/p&gt;</p>
+                <p className='tag'>&lt;/p&gt;</p>
                 <h3>Gmail</h3>
               </div>
             </div>
@@ -181,9 +181,9 @@ function Home() {
             <div className="socialMidia">
               <TechIcons imgurl={"https://skillicons.dev/icons?i=github"} sizeicon={240} title={"Github"} alt={"Github"} />
               <div className='midiaText'>
-                <p>&lt;p&gt;</p>
+                <p className='tag'>&lt;p&gt;</p>
                 <p>Check out my projects and contributions.</p>
-                <p>&lt;/p&gt;</p>
+                <p className='tag'>&lt;/p&gt;</p>
                 <h3>Github</h3>
               </div>
             </div>
