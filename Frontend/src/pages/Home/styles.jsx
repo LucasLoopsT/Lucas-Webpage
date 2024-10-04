@@ -287,40 +287,28 @@ export const Contact = styled.div`
     a:nth-child(1) .socialMidia:hover li {
         background-color: #461b59;
     }
-    a:nth-child(1) .tag{
-        color: #ff97fd!important;
-    }
-    a:nth-child(1) h3{
+    a:nth-child(1) .tag, a:nth-child(1) h3{
         color: #ff97fd!important;
     }
 
     a:nth-child(2) .socialMidia:hover li{
         background-color: #162758;
     }
-    a:nth-child(2) .tag{
-        color: #69daf8!important;
-    }
-    a:nth-child(2) h3{
+    a:nth-child(2) .tag, a:nth-child(2) h3{
         color: #69daf8!important;
     }
 
     a:nth-child(3) .socialMidia:hover li{
         background-color: #544200;
     }
-    a:nth-child(3) .tag{
+    a:nth-child(3) .tag, a:nth-child(3) h3{
         color: #ffd94c!important;
     }
-    a:nth-child(3) h3{
-        color: #ffd94c!important;
-    }
-
+    
     a:nth-child(4) .socialMidia:hover li{
         background-color: #313131;
     }
-    a:nth-child(4) .tag{
-        color: #44ff2b!important;
-    }
-    a:nth-child(4) h3{
+    a:nth-child(4) .tag, a:nth-child(4) h3{
         color: #44ff2b!important;
     }
 
