@@ -85,9 +85,9 @@ function ManageProject() {
       setProjects(response.data)
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        console.log(error.response.data.message);
+        setErrorMessage(error.response.data.message);
       } else {
-        console.log("Erro ao buscar projetos.");
+        setErrorMessage("Erro ao buscar projetos.");
       }
     }
   };

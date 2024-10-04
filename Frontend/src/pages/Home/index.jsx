@@ -19,13 +19,9 @@ function Home() {
   const findAllProjects = async () => {
     try {
       const response = await findAll();
-      setProjects(response.data)
+      setProjects(response.data);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        console.log(error.response.data.message);
-      } else {
-        console.log("Erro ao buscar projetos.");
-      }
+      return;
     }
   };
 
