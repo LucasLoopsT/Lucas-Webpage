@@ -10,14 +10,14 @@ export const Container = styled.article`
     max-width: 480px;
     height: 100%;
     
-    border: ${({theme}) => theme.COLORS.color_2} 2px solid;
+    border: ${({ theme }) => theme.COLORS.color_2} 2px solid;
     border-radius: 30px;
     transition: 0.4s ease;
 
     #details{
         width: 100%;
         height: 100%;
-        background-color: ${({theme}) => theme.COLORS.bg};
+        background-color: ${({ theme }) => theme.COLORS.bg};
         border-radius: 0 0 30px 30px;
         padding: 30px 0;
     }
@@ -45,8 +45,8 @@ export const Container = styled.article`
 
     &:hover{
         transform: scale(102%);
-        box-shadow: 0 10px 0 5px ${({theme}) => theme.COLORS.color_1};
-        border: 2px solid ${({theme}) => theme.COLORS.color_1};
+        box-shadow: 0 10px 0 5px ${({ theme }) => theme.COLORS.color_1};
+        border: 2px solid ${({ theme }) => theme.COLORS.color_1};
         cursor: pointer;
     
         > #img{
@@ -58,6 +58,22 @@ export const Container = styled.article`
         }
     }
 
+    @media screen and (max-width: 1000px) and (min-width: 780px){
+        &:hover{
+                #img{
+                background-size: 160%;
+            };
+        }
+    }
+
+    @media screen and (max-width: 530px){
+        &:hover{
+                #img{
+                background-size: 170%;
+            };
+        }
+    }
+
     @media screen and (max-width: 450px) {
         #details h2,#details p{
             color: white;
@@ -65,7 +81,7 @@ export const Container = styled.article`
 
         &:hover{
             #details h2,#details p{
-                color: ${({theme}) => theme.COLORS.color_1};
+                color: ${({ theme }) => theme.COLORS.color_1};
             }
         }
     }
@@ -75,11 +91,18 @@ export const ImageContainer = styled.div`
     max-width: 100%;
     min-width: 100%;
     min-height: 200px;
-    max-height: 200px;
     background: url(${props => props.imgurl});
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: top;
     border-radius: 30px 30px 0 0;
     transition: 400ms 0.1s ease;
+
+    @media screen and (max-width: 1000px) and (min-width: 780px){
+        background-size: 150%;
+    }
+    
+    @media screen and (max-width: 530px){
+        background-size: 160%;
+    }
 `
