@@ -50,7 +50,7 @@ export const Container = styled.article`
         cursor: pointer;
     
         > #img{
-            background-size: 160%;
+            background-size: 110%;
         };
     
         >#details h2,#details p{
@@ -78,8 +78,8 @@ export const ImageContainer = styled.div`
     max-height: 200px;
     background: url(${props => props.imgurl});
     background-repeat: no-repeat;
-    background-size: 150%;
-    background-position: center;
+    background-size: 100%;
+    background-position: top;
     border-radius: 30px 30px 0 0;
     transition: 400ms 0.1s ease;
 `
