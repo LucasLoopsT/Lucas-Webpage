@@ -14,13 +14,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 // Icons
-import { FaRegImage, FaLink, FaGithub } from "react-icons/fa6";
+import { FaRegImage, FaRegStar, FaLink, FaGithub } from "react-icons/fa6";
 import { LuExternalLink, LuPencil, LuText } from "react-icons/lu";
 import { CgNotes } from "react-icons/cg";
 
 const projectSchema = z.object({
   name: z.string(),
   preview: z.string(),
+  priority: z.string(),
   shortDescription: z.string(),
   description: z.string(),
   link_git: z.string(),
@@ -34,6 +35,7 @@ function ManageProject() {
   const [previewData, setPreviewData] = useState({
     name: "Project X",
     preview: img_Default,
+    priority: 10,
     shortDescription: "Short description",
     description: "Full description",
     link_git: "#",
@@ -55,6 +57,7 @@ function ManageProject() {
     setPreviewData({
       name: "Project X",
       preview: img_Default,
+      priority: 10,
       shortDescription: "Short description",
       description: "Full description",
       link_git: "#",
@@ -71,6 +74,7 @@ function ManageProject() {
     setPreviewData({
       name: formData.name || "Project X",
       preview: formData.preview || img_Default,
+      priority: formData.priority || 10,
       shortDescription: formData.shortDescription || "Short description",
       description: formData.description || "Full description",
       techs: formData.techs || [],
@@ -100,6 +104,7 @@ function ManageProject() {
     if (project != null) {
       setValue("name", project.name);
       setValue("preview", project.preview);
+      setValue("priority", project.priority);
       setValue("shortDescription", project.shortDescription);
       setValue("description", project.description);
       setValue("link_git", project.link_git);
@@ -112,7 +117,7 @@ function ManageProject() {
   const handleSendProject = async (data) => {
     try {
       if (action === "Create") {
-        await create(token, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        await create(token, data.name, data.preview, data.priority, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
         setMessage(`Created: ${data.name}`);
         setErrorMessage(null);
         handlePreview();
@@ -120,7 +125,7 @@ function ManageProject() {
         reset();
 
       } else if (action === "Update") {
-        const project = await update(token, selectedProjectID, data.name, data.preview, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        const project = await update(token, selectedProjectID, data.name, data.preview, data.priority, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
         setMessage(project.data.message);
         setErrorMessage(null);
 
@@ -245,6 +250,13 @@ function ManageProject() {
                   icon={<FaRegImage />}
                   placeholder={"Url."}
                   {...register("preview")}
+                />
+                <Input
+                  nameField={"Project Priority"}
+                  type={"int"}
+                  icon={<FaRegStar  />}
+                  placeholder={"10"}
+                  {...register("priority")}
                 />
                 <Input
                   nameField={"Short Description"}
