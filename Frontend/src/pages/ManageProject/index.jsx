@@ -1,6 +1,6 @@
-import { act, useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Cookies from "js-cookie";
-import { create, findAll, findById, update, deleteProject } from "../../services/projectServices.js"
+import { create, findAll, update, deleteProject } from "../../services/projectServices.js"
 
 import { Container, Preview, Form } from '../ManageProject/styles.jsx';
 import Input from '../../components/Input/index.jsx';
@@ -21,7 +21,7 @@ import { CgNotes } from "react-icons/cg";
 const projectSchema = z.object({
   name: z.string(),
   preview: z.string(),
-  priority: z.string(),
+  priority: z.union([z.string().transform(val => parseInt(val)), z.number()]),
   shortDescription: z.string(),
   description: z.string(),
   link_git: z.string(),
@@ -35,7 +35,6 @@ function ManageProject() {
   const [previewData, setPreviewData] = useState({
     name: "Project X",
     preview: img_Default,
-    priority: 10,
     shortDescription: "Short description",
     description: "Full description",
     link_git: "#",
@@ -57,7 +56,6 @@ function ManageProject() {
     setPreviewData({
       name: "Project X",
       preview: img_Default,
-      priority: 10,
       shortDescription: "Short description",
       description: "Full description",
       link_git: "#",
@@ -74,7 +72,6 @@ function ManageProject() {
     setPreviewData({
       name: formData.name || "Project X",
       preview: formData.preview || img_Default,
-      priority: formData.priority || 10,
       shortDescription: formData.shortDescription || "Short description",
       description: formData.description || "Full description",
       techs: formData.techs || [],
@@ -253,7 +250,7 @@ function ManageProject() {
                 />
                 <Input
                   nameField={"Project Priority"}
-                  type={"int"}
+                  type={"number"}
                   icon={<FaRegStar  />}
                   placeholder={"10"}
                   {...register("priority")}
