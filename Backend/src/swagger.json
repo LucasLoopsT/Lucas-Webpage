@@ -306,6 +306,7 @@
                                     "value": {
                                         "name": "PlayTable",
                                         "preview": "https://",
+                                        "priority": "10",
                                         "shortDescription": "Boardgame Store",
                                         "description": "Site Desenvolvido durante o 1° Semestre para a aula de DWE com...",
                                         "techs": [
@@ -446,6 +447,7 @@
                                     "value": {
                                         "name": "PlayTable",
                                         "preview": "https://",
+                                        "priority": "10",
                                         "shortDescription": "Boardgame Store",
                                         "description": "Site Desenvolvido durante o 1° Semestre para a aula de DWE com...",
                                         "techs": [
@@ -555,6 +557,9 @@
                     "preview": {
                         "type": "string"
                     },
+                    "priority": {
+                        "type": "number"
+                    },
                     "shortDescription": {
                         "type": "string"
                     },
@@ -575,6 +580,7 @@
                     "required": [
                         "name",
                         "preview",
+                        "priority",
                         "shortDescription",
                         "description",
                         "techs",

@@ -4,7 +4,7 @@ class Services{
     create = (body) => Project.create(body);
     findAll = () => Project.find();
     findById = (id) => Project.findById(id);
-    update = (id, name, preview, shortDescription, description, techs, link_git, link_deploy) => Project.findByIdAndUpdate({_id: id}, {name, preview, shortDescription, description, techs, link_git, link_deploy});
+    update = (id, name, preview, priority, shortDescription, description, techs, link_git, link_deploy) => Project.findByIdAndUpdate({_id: id}, {name, preview, priority, shortDescription, description, techs, link_git, link_deploy});
     delete = (id) => Project.deleteOne({_id: id});
 }
 

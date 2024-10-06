@@ -5,9 +5,9 @@ export class Controller {
     create = async (req, res) => {
         try{
 
-            const {name, preview, shortDescription, description, techs, link_git, link_deploy} = req.body;
+            const {name, preview, priority, shortDescription, description, techs, link_git, link_deploy} = req.body;
     
-            if (!name || !preview || !shortDescription || !description || !techs || !link_git || !link_deploy ) {
+            if (!name || !preview || !priority || !shortDescription || !description || !techs || !link_git || !link_deploy ) {
                 return res.status(400).send({message: "Submit all fields to registration."})
             }
         
@@ -66,15 +66,15 @@ export class Controller {
 
     update = async (req, res) => {      
         try{
-            const {name, preview, shortDescription, description, techs, link_git, link_deploy} = req.body;
+            const {name, preview, priority, shortDescription, description, techs, link_git, link_deploy} = req.body;
 
-            if (!name && !preview && !shortDescription && !description && !techs && !link_git && !link_deploy ) {
+            if (!name && !preview && !priority && !shortDescription && !description && !techs && !link_git && !link_deploy ) {
                 return res.status(400).send({message: "Submit at least one field to update."})
             }
 
             const id = req.id;
 
-            await services.update(id, name, preview, shortDescription, description, techs, link_git, link_deploy);
+            await services.update(id, name, preview, priority, shortDescription, description, techs, link_git, link_deploy);
         
             return res.status(200).send({message: "Project successfully updated."});
         } catch(e) {

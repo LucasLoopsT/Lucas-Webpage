@@ -6,6 +6,10 @@ const ProjectSchema = new mongoose.Schema({
         require: true
     },
     preview: {
+        type: Number,
+        required: true,
+    },
+    priority: {
         type: String,
         required: true,
     },
