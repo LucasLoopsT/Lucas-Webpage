@@ -83,6 +83,7 @@ function Home() {
           <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={60} title={"vite"} alt={"vite"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=styledcomponents"} sizeicon={60} title={"styledcomponents"} alt={"styledcomponents"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=py"} sizeicon={60} title={"python"} alt={"python"} />
+          <TechIcons imgurl={"https://skillicons.dev/icons?i=java"} sizeicon={60} title={"python"} alt={"python"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=cs"} sizeicon={60} title={"C#"} alt={"C#"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={60} title={"NodeJS"} alt={"NodeJS"} />
           <TechIcons imgurl={"https://skillicons.dev/icons?i=express"} sizeicon={60} title={"Express"} alt={"Express"} />
