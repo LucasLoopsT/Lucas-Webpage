@@ -41,8 +41,10 @@ export class Controller {
             if (projects.length === 0) {
                 return res.status(400).send({message: "There are no projects."})
             }
-        
-            return res.status(200).send(projects);
+
+            const sortedProjects = projects.sort((a, b) => b.priority - a.priority);
+
+            return res.status(200).send(sortedProjects);
         } catch(e) {
             return res.status(500).send({message:e.message});
         }
