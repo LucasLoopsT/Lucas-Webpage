@@ -18,7 +18,7 @@ Este repositório contém o código do back-end que forma uma API RESTful desenv
 - **CRUD de Projetos**
 
 ## 📚 Bibliotecas:
-- **Node.js**: Ambiente de execução Typescript.
+- **Node.js**: Ambiente de execução Javascript.
 - **Express**: Framework para construção de APIs com Node.js.
 - **JWT (JSON Web Tokens)**: Para autenticação e segurança.
 - **Bcrypt**: Para criptografia de senhas.
