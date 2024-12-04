@@ -9,9 +9,11 @@ const port = process.env.PORT || 3000;
 const app = express();
 connectDatabase();
 
-app.use(cors({
-    origin: 'https://lucasloopst.github.io'
-  }));
+app.use(
+  cors({
+    origin: "https://lucasloopst.github.io",
+  })
+);
 
 app.use(express.json());
 app.use(routes);
