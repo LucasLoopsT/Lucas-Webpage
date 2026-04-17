@@ -1,15 +1,18 @@
-import { Container, ImageContainer } from './styles'
+import { Container, ImageContainer } from "./styles";
 
-function ProjectCard({imgurl, projectName, description, ...rest}) {
+function ProjectCard({ imgurl, projectName, description, ...rest }) {
   return (
     <Container {...rest}>
-      <ImageContainer id="img" imgurl={imgurl}/>
+      <ImageContainer id="img" imgurl={imgurl} />
       <div id="details">
-        <h2>{projectName}</h2>
+        <div className="projectName">
+          <h2>{projectName}</h2>
+          <h2 id="spin">{projectName == "Loading" ? "↻" : null}</h2>
+        </div>
         <p>{description}</p>
       </div>
     </Container>
-  )
+  );
 }
 
-export default ProjectCard
+export default ProjectCard;

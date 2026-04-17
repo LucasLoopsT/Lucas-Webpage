@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://lucas-webpage-production.up.railway.app";
+const baseURL = "https://lucas-webpage.onrender.com";
 
 export function create(
   token,
@@ -11,7 +11,7 @@ export function create(
   description,
   techs,
   link_git,
-  link_deploy
+  link_deploy,
 ) {
   const response = axios.post(
     `${baseURL}/project/`,
@@ -29,7 +29,7 @@ export function create(
       headers: {
         authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
   return response;
 }
@@ -54,7 +54,7 @@ export function update(
   description,
   techs,
   link_git,
-  link_deploy
+  link_deploy,
 ) {
   const response = axios.patch(
     `${baseURL}/project/${id}`,
@@ -72,7 +72,7 @@ export function update(
       headers: {
         authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
   return response;
 }

@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.li`
-    
-    width: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
-    height: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
-    list-style: none;
-    cursor: pointer;
+  width: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
+  height: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
+  list-style: none;
+  cursor: pointer;
 
-    img {
+  img {
+    border-radius: 16px;
+    background-color: ${({ bgColor }) => bgColor};
     position: relative;
     filter: grayscale(1);
-    width: ${props => props.sizeicon}px;
-    height: ${props => props.sizeicon}px;
+    width: ${(props) => props.sizeicon}px;
+    height: ${(props) => props.sizeicon}px;
     transition: all 0.2s ease;
   }
 
@@ -19,6 +20,6 @@ export const Container = styled.li`
     width: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
     height: ${({ sizeicon }) => `calc(${sizeicon}px + 10px)`};
     filter: grayscale(0);
+    background-color: ${({ bgColorHover }) => bgColorHover};
   }
-
-`
+`;

@@ -10,8 +10,8 @@
   },
   "servers": [
     {
-      "url": "https://lucas-webpage-production.up.railway.app",
-      "description": "Railway Server"
+      "url": "https://lucas-webpage.onrender.com",
+      "description": "Render Service"
     },
     {
       "url": "http://localhost:3000",

@@ -11,8 +11,8 @@ connectDatabase();
 
 app.use(
   cors({
-    origin: "https://lucasloopst.github.io",
-  })
+    origin: process.env.FRONTEND_URL,
+  }),
 );
 
 app.use(express.json());
