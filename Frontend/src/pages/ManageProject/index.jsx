@@ -1,15 +1,21 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { create, findAll, update, deleteProject } from "../../services/projectServices.js"
+import {
+  create,
+  findAll,
+  update,
+  deleteProject,
+} from "../../services/projectServices.js";
 
-import { Container, Preview, Form } from '../ManageProject/styles.jsx';
-import Input from '../../components/Input/index.jsx';
-import Textarea from '../../components/Textarea/index.jsx';
-import Button from '../../components/Button/index.jsx';
-import TechIcons from '../../components/TechIcons/index.jsx';
-import img_Default from "../../assets/Preview_Default.png"
+import { Container, Preview, Form } from "../ManageProject/styles.jsx";
+import Input from "../../components/Input/index.jsx";
+import Textarea from "../../components/Textarea/index.jsx";
+import MultiSelect from "../../components/MultiSelect/index.jsx";
+import Button from "../../components/Button/index.jsx";
+import TechIcons from "../../components/TechIcons/index.jsx";
+import img_Default from "../../assets/Preview_Default.png";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -21,13 +27,24 @@ import { CgNotes } from "react-icons/cg";
 const projectSchema = z.object({
   name: z.string(),
   preview: z.string(),
-  priority: z.union([z.string().transform(val => parseInt(val)), z.number()]),
+  priority: z.union([z.string().transform((val) => parseInt(val)), z.number()]),
   shortDescription: z.string(),
   description: z.string(),
   link_git: z.string(),
   link_deploy: z.string(),
   techs: z.array(z.string()),
 });
+
+const techsList = [
+  { name: "HTML", icon: "html" },
+  { name: "CSS", icon: "css" },
+  { name: "JS", icon: "js" },
+  { name: "React", icon: "react" },
+  { name: "Vite", icon: "vite" },
+  { name: "NodeJS", icon: "nodejs" },
+  { name: "MySQL", icon: "mysql" },
+  { name: "Mongo", icon: "mongo" },
+];
 
 function ManageProject() {
   const [projects, setProjects] = useState([]);
@@ -39,20 +56,21 @@ function ManageProject() {
     description: "Full description",
     link_git: "#",
     link_deploy: "#",
-    techs: []
+    techs: [],
   });
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState("");
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const token = Cookies.get("token");
 
-  const { register, handleSubmit, setValue, formState: { errors }, reset, getValues } = useForm({
-    resolver: zodResolver(projectSchema),
-  });
+  const { register, handleSubmit, setValue, reset, getValues, control } =
+    useForm({
+      resolver: zodResolver(projectSchema),
+    });
 
   const handleActionChange = (e) => {
     setAction(e.target.value);
-    setSelectedProjectID(""); 
+    setSelectedProjectID("");
     setPreviewData({
       name: "Project X",
       preview: img_Default,
@@ -60,14 +78,14 @@ function ManageProject() {
       description: "Full description",
       link_git: "#",
       link_deploy: "#",
-      techs: []
+      techs: [],
     });
     findAllProjects();
     reset();
   };
 
   const handlePreview = () => {
-    const formData = getValues(); 
+    const formData = getValues();
 
     setPreviewData({
       name: formData.name || "Project X",
@@ -76,16 +94,20 @@ function ManageProject() {
       description: formData.description || "Full description",
       techs: formData.techs || [],
       link_git: formData.link_git || "#",
-      link_deploy: formData.link_deploy || "#"
+      link_deploy: formData.link_deploy || "#",
     });
-  }
+  };
 
   const findAllProjects = async () => {
     try {
       const response = await findAll();
-      setProjects(response.data)
+      setProjects(response.data);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setErrorMessage(error.response.data.message);
       } else {
         setErrorMessage("Erro ao buscar projetos.");
@@ -96,7 +118,7 @@ function ManageProject() {
   const handleSelectProject = (event) => {
     const id = event.target.value;
     setSelectedProjectID(id);
-    const project = projects.find(p => p._id === id);
+    const project = projects.find((p) => p._id === id);
 
     if (project != null) {
       setValue("name", project.name);
@@ -114,18 +136,37 @@ function ManageProject() {
   const handleSendProject = async (data) => {
     try {
       if (action === "Create") {
-        await create(token, data.name, data.preview, data.priority, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        await create(
+          token,
+          data.name,
+          data.preview,
+          data.priority,
+          data.shortDescription,
+          data.description,
+          data.techs,
+          data.link_git,
+          data.link_deploy,
+        );
         setMessage(`Created: ${data.name}`);
         setErrorMessage(null);
         handlePreview();
 
         reset();
-
       } else if (action === "Update") {
-        const project = await update(token, selectedProjectID, data.name, data.preview, data.priority, data.shortDescription, data.description, data.techs, data.link_git, data.link_deploy);
+        const project = await update(
+          token,
+          selectedProjectID,
+          data.name,
+          data.preview,
+          data.priority,
+          data.shortDescription,
+          data.description,
+          data.techs,
+          data.link_git,
+          data.link_deploy,
+        );
         setMessage(project.data.message);
         setErrorMessage(null);
-
       } else if (action === "Delete") {
         const project = await deleteProject(token, selectedProjectID);
         setMessage(project.data.message);
@@ -133,12 +174,15 @@ function ManageProject() {
         reset();
         findAllProjects();
         handlePreview();
-
       } else {
         setErrorMessage("Função não encontrada");
       }
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setErrorMessage(error.response.data.message);
         setMessage(null);
       } else {
@@ -146,7 +190,7 @@ function ManageProject() {
         setMessage(null);
       }
     }
-  }
+  };
 
   useLayoutEffect(() => {
     if (errorMessage || message) {
@@ -158,7 +202,6 @@ function ManageProject() {
       return () => clearTimeout(timer);
     }
   }, [errorMessage, message]);
-
 
   useEffect(() => {
     findAllProjects();
@@ -172,7 +215,10 @@ function ManageProject() {
       <Form className="Section">
         <div className="title">
           <h2>Manage Projects</h2>
-          <p>Select an existing project to edit and update it or create another one to share on the main page!</p>
+          <p>
+            Select an existing project to edit and update it or create another
+            one to share on the main page!
+          </p>
         </div>
         <div id="content">
           <Preview>
@@ -182,32 +228,50 @@ function ManageProject() {
                 <img src={previewData.preview} alt={previewData.name} />
                 <p className="field">{previewData.shortDescription}</p>
                 <p className="field">{previewData.description}</p>
-                <div className="field" id="techs_preview">
-                  {previewData.techs.map((tech) => (
-                    <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={40} />
-                  ))}
-                </div>
-                <a className="field" href={previewData.link_git} target='_blank'>
+                {previewData.techs.length > 0 ? (
+                  <div className="field" id="techs_preview">
+                    {previewData.techs.map((tech) => (
+                      <TechIcons
+                        key={tech}
+                        imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`}
+                        sizeicon={40}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="field">Techs</p>
+                )}
+                <a
+                  className="field"
+                  href={previewData.link_git}
+                  target="_blank"
+                >
                   <FaGithub /> See the repository
                 </a>
-                <a className="field" href={previewData.link_deploy} target='_blank'>
+                <a
+                  className="field"
+                  href={previewData.link_deploy}
+                  target="_blank"
+                >
                   <LuExternalLink /> See the project
                 </a>
               </>
             </div>
-            <Button type={'button'} text={'Preview'} onClick={handlePreview} />
+            <Button type={"button"} text={"Preview"} onClick={handlePreview} />
           </Preview>
           <form id="formulario" onSubmit={handleSubmit(handleSendProject)}>
             <div className="div_Select">
-              <label htmlFor='action'>Action</label>
-              <select 
-                id="action" 
-                name="action" 
-                value={action} 
+              <label htmlFor="action">Action</label>
+              <select
+                id="action"
+                name="action"
+                value={action}
                 onChange={handleActionChange}
-                required 
+                required
               >
-                <option value="" disabled>Select</option>
+                <option value="" disabled>
+                  Select
+                </option>
                 <option value="Create">Create</option>
                 <option value="Update">Update</option>
                 <option value="Delete">Delete</option>
@@ -216,17 +280,21 @@ function ManageProject() {
 
             {(action === "Update" || action === "Delete") && (
               <div className="div_Select">
-                <label htmlFor='AllProjects'>Select the project</label>
-                <select 
-                  id="AllProjects" 
-                  name="AllProjects" 
+                <label htmlFor="AllProjects">Select the project</label>
+                <select
+                  id="AllProjects"
+                  name="AllProjects"
                   value={selectedProjectID}
                   onChange={handleSelectProject}
                   required
                 >
-                  <option value="" disabled>Select</option>
+                  <option value="" disabled>
+                    Select
+                  </option>
                   {projects.map((project) => (
-                    <option key={project._id} value={project._id}>{project.name}</option>
+                    <option key={project._id} value={project._id}>
+                      {project.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -251,7 +319,7 @@ function ManageProject() {
                 <Input
                   nameField={"Project Priority"}
                   type={"number"}
-                  icon={<FaRegStar  />}
+                  icon={<FaRegStar />}
                   placeholder={"10"}
                   {...register("priority")}
                 />
@@ -282,91 +350,29 @@ function ManageProject() {
                   placeholder={"Repository link."}
                   {...register("link_deploy")}
                 />
-                <ul id="techs_checkbox_list">
-                  <div className="tech_check">
-                    <Input
-                      nameField={"HTML"}
-                      type={"checkbox"}
-                      value="HTML"
-                      {...register("techs")}
+                <Controller
+                  name="techs"
+                  control={control}
+                  defaultValue={[]}
+                  render={({ field }) => (
+                    <MultiSelect
+                      id="techs"
+                      title="Technologies"
+                      placeholder="Select technologies"
+                      options={techsList.map((tech) => ({
+                        id: tech.name,
+                        text: tech.name,
+                      }))}
+                      value={field.value}
+                      setValue={field.onChange}
                     />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=html"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"CSS"}
-                      type={"checkbox"}
-                      value="CSS"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=css"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"JS"}
-                      type={"checkbox"}
-                      value="JS"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=js"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"React"}
-                      type={"checkbox"}
-                      value="React"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=react"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"Vite"}
-                      type={"checkbox"}
-                      value="Vite"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=vite"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"NodeJS"}
-                      type={"checkbox"}
-                      value="NodeJS"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=nodejs"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"MySQL"}
-                      type={"checkbox"}
-                      value="MySQL"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=mysql"} sizeicon={40} />
-                  </div>
-                  <div className="tech_check">
-                    <Input
-                      nameField={"Mongo"}
-                      type={"checkbox"}
-                      value="Mongo"
-                      {...register("techs")}
-                    />
-                    <TechIcons imgurl={"https://skillicons.dev/icons?i=mongo"} sizeicon={40} />
-                  </div>
-                </ul>
+                  )}
+                />
               </>
             )}
-            {action === "Create" && (
-              <Button type={'submit'} text={'Create'} />
-            )}
-            {action === "Update" && (
-              <Button type={'submit'} text={'Update'} />
-            )}
-            {action === "Delete" && (
-              <Button type={'submit'} text={'Delete'} />
-            )}
+            {action === "Create" && <Button type={"submit"} text={"Create"} />}
+            {action === "Update" && <Button type={"submit"} text={"Update"} />}
+            {action === "Delete" && <Button type={"submit"} text={"Delete"} />}
           </form>
         </div>
       </Form>

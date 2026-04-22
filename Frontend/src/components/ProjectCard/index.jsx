@@ -5,11 +5,16 @@ function ProjectCard({ imgurl, projectName, description, ...rest }) {
     <Container {...rest}>
       <ImageContainer id="img" imgurl={imgurl} />
       <div id="details">
-        <div className="projectName">
-          <h2>{projectName}</h2>
-          <h2 id="spin">{projectName == "Loading" ? "↻" : null}</h2>
-        </div>
-        <p>{description}</p>
+        {projectName == "Loading" ? (
+          <div id="spin">
+            <h2>↻</h2>
+          </div>
+        ) : (
+          <>
+            <h2>{projectName}</h2>
+            <p>{description}</p>
+          </>
+        )}
       </div>
     </Container>
   );

@@ -49,6 +49,13 @@ export const Container = styled.article`
   }
 
   #spin {
+    display: flex;
+    justify-content: center;
+  }
+
+  #spin h2 {
+    font-size: 50px !important;
+    color: white !important;
     animation: spin 500ms ease infinite;
   }
 

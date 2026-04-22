@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -7,19 +7,19 @@ export const Container = styled.div`
   gap: 5px;
   width: 100%;
 
-  label{
-      width: 70%;
-      color: white;
+  label {
+    width: 100%;
+    color: white;
   }
-`
+`;
 
 export const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 100%;
 
-  input{
+  input {
     width: 100%;
     height: 40px;
     padding: 10px;
@@ -38,7 +38,7 @@ export const InputWrapper = styled.div`
     -webkit-box-shadow: 0 0 0px 1000px #202020 inset !important;
     -webkit-text-fill-color: white !important;
     box-shadow: 0 0 0px 1000px #202020 inset !important;
-    font-family: 'Montserrat', sans-serif; 
+    font-family: "Montserrat", sans-serif;
   }
 `;
 

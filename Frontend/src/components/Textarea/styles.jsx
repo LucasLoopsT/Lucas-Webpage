@@ -1,25 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
 
-    label{
-      width: 70%;
-      color: white;
-    }
-`
+  label {
+    width: 100%;
+    color: white;
+  }
+`;
 
 export const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 100%;
 
-  textarea{
+  textarea {
     width: 100%;
     height: 100px;
     padding: 10px;
@@ -27,10 +27,10 @@ export const InputWrapper = styled.div`
     border: none;
     outline: none;
     border-radius: 10px;
-    background-color: ${({theme}) => theme.COLORS.bg};
+    background-color: ${({ theme }) => theme.COLORS.bg};
     color: white;
     resize: none;
-    }
+  }
 `;
 
 export const IconWrapper = styled.div`
@@ -44,6 +44,6 @@ export const IconWrapper = styled.div`
 
   svg {
     font-size: 20px;
-    color: ${({theme}) => theme.COLORS.color_2};
+    color: ${({ theme }) => theme.COLORS.color_2};
   }
 `;
