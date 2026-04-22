@@ -86,7 +86,7 @@ export const Form = styled.div`
     outline: none;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.COLORS.bg};
-    color: white;
+    color: ${({ theme }) => theme.COLORS.INPUT_TEXT};
     resize: none;
   }
 

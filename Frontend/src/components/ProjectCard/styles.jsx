@@ -55,7 +55,7 @@ export const Container = styled.article`
 
   #spin h2 {
     font-size: 50px !important;
-    color: white !important;
+    color: ${({ theme }) => theme.COLORS.CARD_SPINNER} !important;
     animation: spin 500ms ease infinite;
   }
 
@@ -80,7 +80,7 @@ export const Container = styled.article`
 
     > #details h2,
     #details p {
-      color: white;
+      color: ${({ theme }) => theme.COLORS.CARD_HOVER_TEXT};
     }
   }
 
@@ -103,7 +103,7 @@ export const Container = styled.article`
   @media screen and (max-width: 450px) {
     #details h2,
     #details p {
-      color: white;
+      color: ${({ theme }) => theme.COLORS.CARD_DETAIL_MOBILE};
     }
 
     &:hover {

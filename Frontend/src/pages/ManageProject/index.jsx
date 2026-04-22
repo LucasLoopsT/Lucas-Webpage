@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import {
   create,
@@ -47,6 +48,7 @@ const techsList = [
 ];
 
 function ManageProject() {
+  const { t } = useTranslation();
   const [projects, setProjects] = useState([]);
   const [selectedProjectID, setSelectedProjectID] = useState(null);
   const [previewData, setPreviewData] = useState({
@@ -110,7 +112,7 @@ function ManageProject() {
       ) {
         setErrorMessage(error.response.data.message);
       } else {
-        setErrorMessage("Erro ao buscar projetos.");
+        setErrorMessage(t("manage.fetchError"));
       }
     }
   };
@@ -147,7 +149,7 @@ function ManageProject() {
           data.link_git,
           data.link_deploy,
         );
-        setMessage(`Created: ${data.name}`);
+        setMessage(t("manage.created", { name: data.name }));
         setErrorMessage(null);
         handlePreview();
 
@@ -175,7 +177,7 @@ function ManageProject() {
         findAllProjects();
         handlePreview();
       } else {
-        setErrorMessage("Função não encontrada");
+        setErrorMessage(t("manage.functionNotFound"));
       }
     } catch (error) {
       if (
@@ -186,7 +188,7 @@ function ManageProject() {
         setErrorMessage(error.response.data.message);
         setMessage(null);
       } else {
-        setErrorMessage(`Ocorreu um erro ao executar o ${action} do projeto.`);
+        setErrorMessage(t("manage.projectProcessingError"));
         setMessage(null);
       }
     }
@@ -214,11 +216,8 @@ function ManageProject() {
 
       <Form className="Section">
         <div className="title">
-          <h2>Manage Projects</h2>
-          <p>
-            Select an existing project to edit and update it or create another
-            one to share on the main page!
-          </p>
+          <h2>{t("manage.title")}</h2>
+          <p>{t("manage.subtitle")}</p>
         </div>
         <div id="content">
           <Preview>
@@ -239,29 +238,33 @@ function ManageProject() {
                     ))}
                   </div>
                 ) : (
-                  <p className="field">Techs</p>
+                  <p className="field">{t("manage.techsLabel")}</p>
                 )}
                 <a
                   className="field"
                   href={previewData.link_git}
                   target="_blank"
                 >
-                  <FaGithub /> See the repository
+                  <FaGithub /> {t("manage.seeRepo")}
                 </a>
                 <a
                   className="field"
                   href={previewData.link_deploy}
                   target="_blank"
                 >
-                  <LuExternalLink /> See the project
+                  <LuExternalLink /> {t("manage.seeProject")}
                 </a>
               </>
             </div>
-            <Button type={"button"} text={"Preview"} onClick={handlePreview} />
+            <Button
+              type={"button"}
+              text={t("manage.preview")}
+              onClick={handlePreview}
+            />
           </Preview>
           <form id="formulario" onSubmit={handleSubmit(handleSendProject)}>
             <div className="div_Select">
-              <label htmlFor="action">Action</label>
+              <label htmlFor="action">{t("manage.action")}</label>
               <select
                 id="action"
                 name="action"
@@ -270,17 +273,17 @@ function ManageProject() {
                 required
               >
                 <option value="" disabled>
-                  Select
+                  {t("manage.select")}
                 </option>
-                <option value="Create">Create</option>
-                <option value="Update">Update</option>
-                <option value="Delete">Delete</option>
+                <option value="Create">{t("manage.create")}</option>
+                <option value="Update">{t("manage.update")}</option>
+                <option value="Delete">{t("manage.delete")}</option>
               </select>
             </div>
 
             {(action === "Update" || action === "Delete") && (
               <div className="div_Select">
-                <label htmlFor="AllProjects">Select the project</label>
+                <label htmlFor="AllProjects">{t("manage.selectProject")}</label>
                 <select
                   id="AllProjects"
                   name="AllProjects"
@@ -289,7 +292,7 @@ function ManageProject() {
                   required
                 >
                   <option value="" disabled>
-                    Select
+                    {t("manage.select")}
                   </option>
                   {projects.map((project) => (
                     <option key={project._id} value={project._id}>
@@ -303,51 +306,51 @@ function ManageProject() {
             {(action === "Create" || action === "Update") && (
               <>
                 <Input
-                  nameField={"Project Name"}
+                  nameField={t("manage.projectName")}
                   type={"text"}
                   icon={<LuPencil />}
-                  placeholder={"Project X."}
+                  placeholder={t("manage.namePlaceholder")}
                   {...register("name")}
                 />
                 <Input
-                  nameField={"Project Image"}
+                  nameField={t("manage.projectImage")}
                   type={"text"}
                   icon={<FaRegImage />}
-                  placeholder={"Url."}
+                  placeholder={t("manage.urlPlaceholder")}
                   {...register("preview")}
                 />
                 <Input
-                  nameField={"Project Priority"}
+                  nameField={t("manage.projectPriority")}
                   type={"number"}
                   icon={<FaRegStar />}
-                  placeholder={"10"}
+                  placeholder={t("manage.priorityPlaceholder")}
                   {...register("priority")}
                 />
                 <Input
-                  nameField={"Short Description"}
+                  nameField={t("manage.shortDescription")}
                   type={"text"}
                   icon={<LuText />}
-                  placeholder={"What is this project for?"}
+                  placeholder={t("manage.shortDescPlaceholder")}
                   {...register("shortDescription")}
                 />
                 <Textarea
-                  nameField={"Description"}
+                  nameField={t("manage.description")}
                   icon={<CgNotes />}
-                  placeholder={"Here you can write more about this project."}
+                  placeholder={t("manage.descPlaceholder")}
                   {...register("description")}
                 />
                 <Input
-                  nameField={"Project Repository"}
+                  nameField={t("manage.projectRepo")}
                   type={"text"}
                   icon={<FaGithub />}
-                  placeholder={"Repository link."}
+                  placeholder={t("manage.repoPlaceholder")}
                   {...register("link_git")}
                 />
                 <Input
-                  nameField={"Deploy Link"}
+                  nameField={t("manage.deployLink")}
                   type={"text"}
                   icon={<FaLink />}
-                  placeholder={"Repository link."}
+                  placeholder={t("manage.deployPlaceholder")}
                   {...register("link_deploy")}
                 />
                 <Controller
@@ -357,8 +360,8 @@ function ManageProject() {
                   render={({ field }) => (
                     <MultiSelect
                       id="techs"
-                      title="Technologies"
-                      placeholder="Select technologies"
+                      title={t("manage.technologies")}
+                      placeholder={t("manage.techPlaceholder")}
                       options={techsList.map((tech) => ({
                         id: tech.name,
                         text: tech.name,
@@ -370,9 +373,15 @@ function ManageProject() {
                 />
               </>
             )}
-            {action === "Create" && <Button type={"submit"} text={"Create"} />}
-            {action === "Update" && <Button type={"submit"} text={"Update"} />}
-            {action === "Delete" && <Button type={"submit"} text={"Delete"} />}
+            {action === "Create" && (
+              <Button type={"submit"} text={t("manage.create")} />
+            )}
+            {action === "Update" && (
+              <Button type={"submit"} text={t("manage.update")} />
+            )}
+            {action === "Delete" && (
+              <Button type={"submit"} text={t("manage.delete")} />
+            )}
           </form>
         </div>
       </Form>

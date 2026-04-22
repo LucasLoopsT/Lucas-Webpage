@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   label {
     width: 100%;
-    color: white;
+    color: ${({ theme }) => theme.COLORS.LABEL};
   }
 `;
 
@@ -27,7 +27,7 @@ export const SelectBox = styled.div`
   padding-left: ${({ hasIcon }) => (hasIcon ? "40px" : "10px")};
   border-radius: 10px;
   background-color: ${({ theme }) => theme.COLORS.bg};
-  color: white;
+  color: ${({ theme }) => theme.COLORS.INPUT_TEXT};
 
   display: flex;
   flex-wrap: wrap;
@@ -76,7 +76,7 @@ export const Option = styled.label`
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  color: white;
+  color: ${({ theme }) => theme.COLORS.INPUT_TEXT};
 
   &:hover {
     background: ${({ theme }) => theme.COLORS.bg_light};

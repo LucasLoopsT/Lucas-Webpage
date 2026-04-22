@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 
 import { findAll } from "../../services/projectServices.js";
@@ -21,6 +22,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Lucas from "../../assets/Lucas.png";
 
 function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
 
@@ -68,14 +70,10 @@ function Home() {
     <Container>
       <Hello className="Section" id="about">
         <Paragraph>
-          <h3>hi guys, i’m:</h3>
+          <h3>{t("home.hi")}</h3>
           <h1>Lucas Lopes</h1>
-          <h2>FullStack Developer</h2>
-          <p>
-            A proactive person, always willing to learn and practice new
-            technologies, also working in some awesome projects, which I want to
-            share with you.
-          </p>
+          <h2>{t("home.role")}</h2>
+          <p>{t("home.intro")}</p>
         </Paragraph>
         <Perfil>
           <img src={Lucas} alt="Lucas Lopes" />
@@ -212,11 +210,8 @@ function Home() {
 
       <Projects className="Section" id="projects">
         <div className="title">
-          <h2>Projects</h2>
-          <p>
-            Check it out some projects that i made or participate! I'm sure you
-            will enjoy.
-          </p>
+          <h2>{t("home.projectsTitle")}</h2>
+          <p>{t("home.projectsSubtitle")}</p>
         </div>
         <hr />
         {projects.length > 0 ? (
@@ -226,9 +221,8 @@ function Home() {
             navigation
           >
             {projects.map((project) => (
-              <SwiperSlide>
+              <SwiperSlide key={project._id}>
                 <ProjectCard
-                  key={project._id}
                   onClick={() => openProject(project._id)}
                   projectName={project.name}
                   imgurl={project.preview}
@@ -247,9 +241,10 @@ function Home() {
           >
             <SwiperSlide id="swiper-slide-loading">
               <ProjectCard
-                projectName={"Loading"}
+                isLoading
+                projectName={t("home.loading")}
                 imgurl={Preview_Default}
-                description={"Searching projects..."}
+                description={t("home.searchingProjects")}
                 alt={"↻"}
                 id="loading-card"
               />
@@ -260,8 +255,8 @@ function Home() {
 
       <Contact className="Section" id="contact">
         <div className="title">
-          <h2>Contact</h2>
-          <p>These are social midias and other websites you can find me!</p>
+          <h2>{t("home.contactTitle")}</h2>
+          <p>{t("home.contactSubtitle")}</p>
         </div>
         <hr />
         <div>
@@ -275,7 +270,7 @@ function Home() {
               />
               <div className="midiaText">
                 <p className="tag">&lt;p&gt;</p>
-                <p>I’m low-profile, but you can still find me there.</p>
+                <p>{t("home.instagramCaption")}</p>
                 <p className="tag">&lt;/p&gt;</p>
                 <h3>Instagram</h3>
               </div>
@@ -294,7 +289,7 @@ function Home() {
               />
               <div className="midiaText">
                 <p className="tag">&lt;p&gt;</p>
-                <p>Let's connect professionally!</p>
+                <p>{t("home.linkedinCaption")}</p>
                 <p className="tag">&lt;/p&gt;</p>
                 <h3>Linkedin</h3>
               </div>
@@ -310,7 +305,7 @@ function Home() {
               />
               <div className="midiaText">
                 <p className="tag">&lt;p&gt;</p>
-                <p>Reach out for collaborations via email.</p>
+                <p>{t("home.gmailCaption")}</p>
                 <p className="tag">&lt;/p&gt;</p>
                 <h3>Gmail</h3>
               </div>
@@ -326,7 +321,7 @@ function Home() {
               />
               <div className="midiaText">
                 <p className="tag">&lt;p&gt;</p>
-                <p>Check out my projects and contributions.</p>
+                <p>{t("home.githubCaption")}</p>
                 <p className="tag">&lt;/p&gt;</p>
                 <h3>Github</h3>
               </div>

@@ -1,0 +1,78 @@
+{
+  "header": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "toggleTheme": "Toggle light and dark theme",
+    "language": "Language",
+    "langEn": "English",
+    "langPt": "Portuguese"
+  },
+  "home": {
+    "hi": "hi guys, i’m:",
+    "role": "FullStack Developer",
+    "intro": "A proactive person, always willing to learn and practice new technologies, also working in some awesome projects, which I want to share with you.",
+    "projectsTitle": "Projects",
+    "projectsSubtitle": "Check it out some projects that i made or participate! I'm sure you will enjoy.",
+    "contactTitle": "Contact",
+    "contactSubtitle": "These are social midias and other websites you can find me!",
+    "instagramCaption": "I’m low-profile, but you can still find me there.",
+    "linkedinCaption": "Let's connect professionally!",
+    "gmailCaption": "Reach out for collaborations via email.",
+    "githubCaption": "Check out my projects and contributions.",
+    "loading": "Loading",
+    "searchingProjects": "Searching projects..."
+  },
+  "login": {
+    "title": "Login",
+    "user": "User",
+    "password": "Password",
+    "submit": "Login",
+    "emailPlaceholder": "Email@email.com",
+    "passwordPlaceholder": "12345678",
+    "success": "Login successful",
+    "errorGeneric": "Error on login user"
+  },
+  "manage": {
+    "title": "Manage Projects",
+    "subtitle": "Select an existing project to edit and update it or create another one to share on the main page!",
+    "preview": "Preview",
+    "seeRepo": "See the repository",
+    "seeProject": "See the project",
+    "action": "Action",
+    "select": "Select",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "selectProject": "Select the project",
+    "projectName": "Project Name",
+    "projectImage": "Project Image",
+    "projectPriority": "Project Priority",
+    "shortDescription": "Short Description",
+    "description": "Description",
+    "projectRepo": "Project Repository",
+    "deployLink": "Deploy Link",
+    "technologies": "Technologies",
+    "techPlaceholder": "Select technologies",
+    "namePlaceholder": "Project X.",
+    "urlPlaceholder": "Url.",
+    "priorityPlaceholder": "10",
+    "shortDescPlaceholder": "What is this project for?",
+    "descPlaceholder": "Here you can write more about this project.",
+    "repoPlaceholder": "Repository link.",
+    "deployPlaceholder": "Deploy link.",
+    "techsLabel": "Techs",
+    "fetchError": "Error fetching projects.",
+    "functionNotFound": "Function not found",
+    "projectProcessingError": "An error occurred while processing the project.",
+    "created": "Created: {{name}}"
+  },
+  "projectView": {
+    "seeRepo": "See the repository",
+    "seeProject": "See the project",
+    "notFound": "Project not found."
+  },
+  "footer": {
+    "copyright": "© {{year}} - "
+  }
+}

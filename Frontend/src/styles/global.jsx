@@ -27,6 +27,7 @@ export default createGlobalStyle`
     body{
         background-color: ${({ theme }) => theme.COLORS.bg};
         color: ${({ theme }) => theme.COLORS.WHITE};
+        transition: background-color 0.25s ease, color 0.25s ease;
         -webkit-font-smoothing: antileased;
     }
 
@@ -58,7 +59,7 @@ export default createGlobalStyle`
     }
 
     label{
-        color: white;
+        color: ${({ theme }) => theme.COLORS.LABEL};
     }
 
     button, a{

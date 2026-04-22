@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import {findById} from "../../services/projectServices.js";
-import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { findById } from "../../services/projectServices.js";
+import Cookies from "js-cookie";
 
 import { Preview } from './styles.jsx';
 import TechIcons from '../../components/TechIcons/index.jsx';
@@ -10,6 +11,7 @@ import { LuExternalLink} from "react-icons/lu";
 import { FaGithub} from "react-icons/fa";
 
 function ProjectView() {
+  const { t } = useTranslation();
   const [project, setProject] = useState({
     name: "Project X",
     preview: img_Default,
@@ -39,7 +41,7 @@ function ProjectView() {
       if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
       } else {
-        setErrorMessage("Project not found.");
+        setErrorMessage(t("projectView.notFound"));
       }
     }
   }
@@ -48,7 +50,7 @@ function ProjectView() {
     const projectId = Cookies.get("projectId")
     
     if (!projectId) {
-      setErrorMessage("Project not found.");
+      setErrorMessage(t("projectView.notFound"));
     } else {
       findProject(projectId);
     }
@@ -79,8 +81,17 @@ function ProjectView() {
             <TechIcons key={tech} imgurl={`https://skillicons.dev/icons?i=${tech.toLowerCase()}`} sizeicon={60} />
           ))}
         </div>
-        <a className="field" href={project.link_git} target='_blank'> <FaGithub /> See the repository </a>
-        <a className="field" href={project.link_deploy} target='_blank'> <LuExternalLink /> See the project</a>
+        <a className="field" href={project.link_git} target="_blank" rel="noreferrer">
+          <FaGithub /> {t("projectView.seeRepo")}
+        </a>
+        <a
+          className="field"
+          href={project.link_deploy}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <LuExternalLink /> {t("projectView.seeProject")}
+        </a>
       </Preview>
     </>
   );

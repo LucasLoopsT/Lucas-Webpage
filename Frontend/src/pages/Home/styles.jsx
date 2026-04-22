@@ -41,7 +41,7 @@ export const Paragraph = styled.div`
     h1 {
         font-family: "League Spartan", sans-serif;
         font-size: 85px;
-        color: #fff;
+        color: ${({ theme }) => theme.COLORS.HEADING_H1};
     }
 
     h3 {
@@ -322,12 +322,12 @@ export const Contact = styled.div`
         }
 
         > .midiaText h3{
-            color: white;
-            border-bottom: 2px solid white;
+            color: ${({ theme }) => theme.COLORS.SOCIAL_HOVER_TEXT};
+            border-bottom: 2px solid ${({ theme }) => theme.COLORS.SOCIAL_HOVER_TEXT};
         }
 
         > .midiaText p{
-            color: white;
+            color: ${({ theme }) => theme.COLORS.SOCIAL_HOVER_TEXT};
         }
     }
 
@@ -365,12 +365,11 @@ export const Contact = styled.div`
             }
 
             > .midiaText h3{
-                color: ${({ theme }) => theme.COLORS.color_1};
-                color: white;
+                color: ${({ theme }) => theme.COLORS.SOCIAL_HOVER_TEXT};
             }
 
             > .midiaText p{
-                color: white;
+                color: ${({ theme }) => theme.COLORS.SOCIAL_HOVER_TEXT};
             }
         }
     }

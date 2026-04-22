@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   label {
     width: 100%;
-    color: white;
+    color: ${({ theme }) => theme.COLORS.LABEL};
   }
 `;
 
@@ -28,16 +28,16 @@ export const InputWrapper = styled.div`
     outline: none;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.COLORS.bg}!important;
-    color: white;
+    color: ${({ theme }) => theme.COLORS.INPUT_TEXT};
   }
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px #202020 inset !important;
-    -webkit-text-fill-color: white !important;
-    box-shadow: 0 0 0px 1000px #202020 inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.COLORS.INPUT_AUTOFILL_BG} inset !important;
+    -webkit-text-fill-color: ${({ theme }) => theme.COLORS.INPUT_TEXT} !important;
+    box-shadow: 0 0 0px 1000px ${({ theme }) => theme.COLORS.INPUT_AUTOFILL_BG} inset !important;
     font-family: "Montserrat", sans-serif;
   }
 `;

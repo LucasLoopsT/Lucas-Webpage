@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-// Styled-components
 import { ThemeProvider } from "styled-components";
-import theme from "./styles/theme.jsx";
+import { getTheme } from "./styles/theme.jsx";
 import GlobalStyle from "./styles/global.jsx";
 
-// Page
+import { ThemeModeProvider, useThemeMode } from "./context/ThemeModeContext.jsx";
 import Header from "./components/Header/index.jsx";
 import Footer from "./components/Footer/index.jsx";
 
-//Swiper
 import { register } from "swiper/element/bundle";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,16 +16,24 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-coverflow";
 register();
 
+function AppShell() {
+  const { mode } = useThemeMode();
+
+  return (
+    <ThemeProvider theme={getTheme(mode)}>
+      <GlobalStyle />
+      <Header />
+      <Outlet />
+      <Footer />
+    </ThemeProvider>
+  );
+}
+
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <Outlet />
-        <Footer />
-      </ThemeProvider>
-    </>
+    <ThemeModeProvider>
+      <AppShell />
+    </ThemeModeProvider>
   );
 }
 
