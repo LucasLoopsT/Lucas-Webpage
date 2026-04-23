@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_BACKEND_URL;
+const baseURL = "https://lucas-webpage.onrender.com";
 
 export function create(
   token,

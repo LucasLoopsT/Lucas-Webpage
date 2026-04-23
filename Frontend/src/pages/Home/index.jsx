@@ -134,16 +134,16 @@ function Home() {
             alt={"Python"}
           />
           <TechIcons
-            imgurl={"https://skillicons.dev/icons?i=java"}
-            sizeicon={60}
-            title={"Java"}
-            alt={"Java"}
-          />
-          <TechIcons
             imgurl={"https://skillicons.dev/icons?i=cs"}
             sizeicon={60}
             title={"C#"}
             alt={"C#"}
+          />
+          <TechIcons
+            imgurl={"https://skillicons.dev/icons?i=java"}
+            sizeicon={60}
+            title={"Java"}
+            alt={"Java"}
           />
           <TechIcons
             imgurl={"https://skillicons.dev/icons?i=spring"}
@@ -174,6 +174,12 @@ function Home() {
             sizeicon={60}
             title={"MySQL"}
             alt={"MySQL"}
+          />
+          <TechIcons
+            imgurl={"https://skillicons.dev/icons?i=postgres"}
+            sizeicon={60}
+            title={"PostgreSQL"}
+            alt={"PostgreSQL"}
           />
           <TechIcons
             imgurl={"https://skillicons.dev/icons?i=mongo"}
