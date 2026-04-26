@@ -297,7 +297,10 @@
                     "description": "Site Desenvolvido durante o 1° Semestre para a aula de DWE com...",
                     "techs": ["js", "css", "html"],
                     "link_git": "https://github.com/LucasLoopsT",
-                    "link_deploy": "https://github.com/LucasLoopsT/PlayTable"
+                    "link_deploy": "https://github.com/LucasLoopsT/PlayTable",
+                    "name_en": "PlayTable",
+                    "shortDescription_en": "Board game store",
+                    "description_en": "Website developed for the DWE class..."
                   }
                 }
               }
@@ -532,26 +535,38 @@
           "description": {
             "type": "string"
           },
+          "name_en": {
+            "type": "string"
+          },
+          "shortDescription_en": {
+            "type": "string"
+          },
+          "description_en": {
+            "type": "string"
+          },
           "techs": {
-            "type": ["string"]
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "link_git": {
             "type": "string"
           },
           "link_deploy": {
             "type": "string"
-          },
-          "required": [
-            "name",
-            "preview",
-            "priority",
-            "shortDescription",
-            "description",
-            "techs",
-            "link_git",
-            "link_deploy"
-          ]
-        }
+          }
+        },
+        "required": [
+          "name",
+          "preview",
+          "priority",
+          "shortDescription",
+          "description",
+          "techs",
+          "link_git",
+          "link_deploy"
+        ]
       }
     },
     "securitySchemes": {

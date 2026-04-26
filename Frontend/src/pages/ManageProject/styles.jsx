@@ -69,6 +69,56 @@ export const Form = styled.div`
     width: 100%;
   }
 
+  .lang-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .lang-toggle > span {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .lang-toggle__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .lang-toggle__btn {
+    min-width: 56px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    border: 2px solid ${({ theme }) => theme.COLORS.bg_dark};
+    background-color: ${({ theme }) => theme.COLORS.bg};
+    color: ${({ theme }) => theme.COLORS.INPUT_TEXT};
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .lang-toggle__btn.is-active {
+    background-color: ${({ theme }) => theme.COLORS.color_2};
+    color: ${({ theme }) => theme.COLORS.bg_dark};
+  }
+
+  .content-fields-pt,
+  .content-fields-en {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .content-fields-pt[hidden],
+  .content-fields-en[hidden] {
+    display: none !important;
+  }
+
   #formulario {
     display: flex;
     flex-direction: column;

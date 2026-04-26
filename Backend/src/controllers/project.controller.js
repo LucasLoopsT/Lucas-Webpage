@@ -23,7 +23,10 @@ export class Controller {
                     name,
                     preview, 
                     shortDescription, 
-                    description, 
+                    description,
+                    name_en: project.name_en,
+                    shortDescription_en: project.shortDescription_en,
+                    description_en: project.description_en,
                     techs, 
                     link_git, 
                     link_deploy
@@ -68,15 +71,40 @@ export class Controller {
 
     update = async (req, res) => {      
         try{
-            const {name, preview, priority, shortDescription, description, techs, link_git, link_deploy} = req.body;
+            const {
+                name,
+                preview,
+                priority,
+                shortDescription,
+                description,
+                name_en,
+                shortDescription_en,
+                description_en,
+                techs,
+                link_git,
+                link_deploy,
+            } = req.body;
 
-            if (!name && !preview && !priority && !shortDescription && !description && !techs && !link_git && !link_deploy ) {
+            const hasAny =
+                name !== undefined ||
+                preview !== undefined ||
+                priority !== undefined ||
+                shortDescription !== undefined ||
+                description !== undefined ||
+                name_en !== undefined ||
+                shortDescription_en !== undefined ||
+                description_en !== undefined ||
+                techs !== undefined ||
+                link_git !== undefined ||
+                link_deploy !== undefined;
+
+            if (!hasAny) {
                 return res.status(400).send({message: "Submit at least one field to update."})
             }
 
             const id = req.id;
 
-            await services.update(id, name, preview, priority, shortDescription, description, techs, link_git, link_deploy);
+            await services.update(id, req.body);
         
             return res.status(200).send({message: "Project successfully updated."});
         } catch(e) {

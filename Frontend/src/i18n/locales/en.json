@@ -65,7 +65,16 @@
     "fetchError": "Error fetching projects.",
     "functionNotFound": "Function not found",
     "projectProcessingError": "An error occurred while processing the project.",
-    "created": "Created: {{name}}"
+    "created": "Created: {{name}}",
+    "contentLanguage": "Project texts (language)",
+    "langPt": "PT",
+    "langEn": "EN",
+    "projectNameEn": "Project name (English)",
+    "shortDescriptionEn": "Short description (English)",
+    "descriptionEn": "Description (English)",
+    "namePlaceholderEn": "Project X (English)",
+    "shortDescPlaceholderEn": "What is this project for?",
+    "descPlaceholderEn": "Write more about this project in English."
   },
   "projectView": {
     "seeRepo": "See the repository",
@@ -74,5 +83,11 @@
   },
   "footer": {
     "copyright": "© {{year}} - "
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The address may be wrong or the page no longer exists. Choose an option below to continue.",
+    "backHome": "Back to home",
+    "goBack": "Go back"
   }
 }

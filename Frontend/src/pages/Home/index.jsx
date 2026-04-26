@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 
 import { findAll } from "../../services/projectServices.js";
+import { getLocalizedProjectTexts } from "../../utils/projectLocale.js";
 import {
   Container,
   Hello,
@@ -22,7 +23,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Lucas from "../../assets/Lucas.png";
 
 function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
 
@@ -116,6 +117,12 @@ function Home() {
             alt={"Vite"}
           />
           <TechIcons
+            imgurl={"https://skillicons.dev/icons?i=angular"}
+            sizeicon={60}
+            title={"Angular"}
+            alt={"Angular"}
+          />
+          <TechIcons
             imgurl={"https://skillicons.dev/icons?i=tailwind"}
             sizeicon={60}
             title={"Tailwind"}
@@ -132,12 +139,6 @@ function Home() {
             sizeicon={60}
             title={"Python"}
             alt={"Python"}
-          />
-          <TechIcons
-            imgurl={"https://skillicons.dev/icons?i=cs"}
-            sizeicon={60}
-            title={"C#"}
-            alt={"C#"}
           />
           <TechIcons
             imgurl={"https://skillicons.dev/icons?i=java"}
@@ -226,17 +227,20 @@ function Home() {
             pagination={{ clickable: true }}
             navigation
           >
-            {projects.map((project) => (
-              <SwiperSlide key={project._id}>
-                <ProjectCard
-                  onClick={() => openProject(project._id)}
-                  projectName={project.name}
-                  imgurl={project.preview}
-                  description={project.shortDescription}
-                  alt={project.name}
-                />
-              </SwiperSlide>
-            ))}
+            {projects.map((project) => {
+              const loc = getLocalizedProjectTexts(project, i18n.language);
+              return (
+                <SwiperSlide key={project._id}>
+                  <ProjectCard
+                    onClick={() => openProject(project._id)}
+                    projectName={loc.name}
+                    imgurl={project.preview}
+                    description={loc.shortDescription}
+                    alt={loc.name}
+                  />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         ) : (
           <Swiper

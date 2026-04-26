@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import {
@@ -7,6 +7,7 @@ import {
   update,
   deleteProject,
 } from "../../services/projectServices.js";
+import { getLocalizedProjectTexts } from "../../utils/projectLocale.js";
 
 import { Container, Preview, Form } from "../ManageProject/styles.jsx";
 import Input from "../../components/Input/index.jsx";
@@ -31,26 +32,48 @@ const projectSchema = z.object({
   priority: z.union([z.string().transform((val) => parseInt(val)), z.number()]),
   shortDescription: z.string(),
   description: z.string(),
+  name_en: z.string(),
+  shortDescription_en: z.string(),
+  description_en: z.string(),
   link_git: z.string(),
   link_deploy: z.string(),
   techs: z.array(z.string()),
 });
 
+const defaultFormValues = {
+  name: "",
+  preview: "",
+  priority: "",
+  shortDescription: "",
+  description: "",
+  name_en: "",
+  shortDescription_en: "",
+  description_en: "",
+  link_git: "",
+  link_deploy: "",
+  techs: [],
+};
+
 const techsList = [
   { name: "HTML", icon: "html" },
   { name: "CSS", icon: "css" },
   { name: "JS", icon: "js" },
+  { name: "Typescript", icon: "typescript" },
   { name: "React", icon: "react" },
   { name: "Vite", icon: "vite" },
+  { name: "Angular", icon: "angular" },
+  { name: "Tailwind", icon: "tailwind" },
   { name: "NodeJS", icon: "nodejs" },
   { name: "MySQL", icon: "mysql" },
-  { name: "Mongo", icon: "mongo" },
+  { name: "PostgreSQL", icon: "postgres" },
+  { name: "MongoDB", icon: "mongo" },
 ];
 
 function ManageProject() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [projects, setProjects] = useState([]);
   const [selectedProjectID, setSelectedProjectID] = useState(null);
+  const [contentLang, setContentLang] = useState("pt");
   const [previewData, setPreviewData] = useState({
     name: "Project X",
     preview: img_Default,
@@ -68,11 +91,13 @@ function ManageProject() {
   const { register, handleSubmit, setValue, reset, getValues, control } =
     useForm({
       resolver: zodResolver(projectSchema),
+      defaultValues: defaultFormValues,
     });
 
   const handleActionChange = (e) => {
     setAction(e.target.value);
     setSelectedProjectID("");
+    setContentLang("pt");
     setPreviewData({
       name: "Project X",
       preview: img_Default,
@@ -83,22 +108,27 @@ function ManageProject() {
       techs: [],
     });
     findAllProjects();
-    reset();
+    reset(defaultFormValues);
   };
 
-  const handlePreview = () => {
+  const handlePreview = useCallback(() => {
     const formData = getValues();
+    const isEn = contentLang === "en";
 
     setPreviewData({
-      name: formData.name || "Project X",
+      name: (isEn ? formData.name_en : formData.name) || "Project X",
       preview: formData.preview || img_Default,
-      shortDescription: formData.shortDescription || "Short description",
-      description: formData.description || "Full description",
+      shortDescription:
+        (isEn ? formData.shortDescription_en : formData.shortDescription) ||
+        "Short description",
+      description:
+        (isEn ? formData.description_en : formData.description) ||
+        "Full description",
       techs: formData.techs || [],
       link_git: formData.link_git || "#",
       link_deploy: formData.link_deploy || "#",
     });
-  };
+  }, [contentLang, getValues]);
 
   const findAllProjects = async () => {
     try {
@@ -128,6 +158,9 @@ function ManageProject() {
       setValue("priority", project.priority);
       setValue("shortDescription", project.shortDescription);
       setValue("description", project.description);
+      setValue("name_en", project.name_en ?? "");
+      setValue("shortDescription_en", project.shortDescription_en ?? "");
+      setValue("description_en", project.description_en ?? "");
       setValue("link_git", project.link_git);
       setValue("link_deploy", project.link_deploy);
       setValue("techs", project.techs);
@@ -138,42 +171,47 @@ function ManageProject() {
   const handleSendProject = async (data) => {
     try {
       if (action === "Create") {
-        await create(
-          token,
-          data.name,
-          data.preview,
-          data.priority,
-          data.shortDescription,
-          data.description,
-          data.techs,
-          data.link_git,
-          data.link_deploy,
-        );
+        const payload = {
+          name: data.name,
+          preview: data.preview,
+          priority: data.priority,
+          shortDescription: data.shortDescription,
+          description: data.description,
+          name_en: data.name_en,
+          shortDescription_en: data.shortDescription_en,
+          description_en: data.description_en,
+          techs: data.techs,
+          link_git: data.link_git,
+          link_deploy: data.link_deploy,
+        };
+        await create(token, payload);
         setMessage(t("manage.created", { name: data.name }));
         setErrorMessage(null);
         handlePreview();
 
-        reset();
+        reset(defaultFormValues);
       } else if (action === "Update") {
-        const project = await update(
-          token,
-          selectedProjectID,
-          data.name,
-          data.preview,
-          data.priority,
-          data.shortDescription,
-          data.description,
-          data.techs,
-          data.link_git,
-          data.link_deploy,
-        );
+        const payload = {
+          name: data.name,
+          preview: data.preview,
+          priority: data.priority,
+          shortDescription: data.shortDescription,
+          description: data.description,
+          name_en: data.name_en,
+          shortDescription_en: data.shortDescription_en,
+          description_en: data.description_en,
+          techs: data.techs,
+          link_git: data.link_git,
+          link_deploy: data.link_deploy,
+        };
+        const project = await update(token, selectedProjectID, payload);
         setMessage(project.data.message);
         setErrorMessage(null);
       } else if (action === "Delete") {
         const project = await deleteProject(token, selectedProjectID);
         setMessage(project.data.message);
         setErrorMessage(null);
-        reset();
+        reset(defaultFormValues);
         findAllProjects();
         handlePreview();
       } else {
@@ -209,6 +247,12 @@ function ManageProject() {
     findAllProjects();
   }, []);
 
+  useEffect(() => {
+    if (action === "Create" || action === "Update") {
+      handlePreview();
+    }
+  }, [contentLang, action, handlePreview]);
+
   return (
     <Container>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -226,7 +270,10 @@ function ManageProject() {
                 <h3>{previewData.name}</h3>
                 <img src={previewData.preview} alt={previewData.name} />
                 <p className="field">{previewData.shortDescription}</p>
-                <p className="field">{previewData.description}</p>
+                <p
+                  className="field"
+                  dangerouslySetInnerHTML={{ __html: previewData.description }}
+                />
                 {previewData.techs.length > 0 ? (
                   <div className="field" id="techs_preview">
                     {previewData.techs.map((tech) => (
@@ -294,24 +341,23 @@ function ManageProject() {
                   <option value="" disabled>
                     {t("manage.select")}
                   </option>
-                  {projects.map((project) => (
-                    <option key={project._id} value={project._id}>
-                      {project.name}
-                    </option>
-                  ))}
+                  {projects.map((project) => {
+                    const label = getLocalizedProjectTexts(
+                      project,
+                      i18n.language,
+                    ).name;
+                    return (
+                      <option key={project._id} value={project._id}>
+                        {label}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             )}
 
             {(action === "Create" || action === "Update") && (
               <>
-                <Input
-                  nameField={t("manage.projectName")}
-                  type={"text"}
-                  icon={<LuPencil />}
-                  placeholder={t("manage.namePlaceholder")}
-                  {...register("name")}
-                />
                 <Input
                   nameField={t("manage.projectImage")}
                   type={"text"}
@@ -326,18 +372,85 @@ function ManageProject() {
                   placeholder={t("manage.priorityPlaceholder")}
                   {...register("priority")}
                 />
+                <div
+                  className="lang-toggle"
+                  role="group"
+                  aria-label={t("manage.contentLanguage")}
+                >
+                  <span>{t("manage.contentLanguage")}</span>
+                  <div className="lang-toggle__buttons">
+                    <button
+                      type="button"
+                      className={`lang-toggle__btn${contentLang === "pt" ? " is-active" : ""}`}
+                      onClick={() => setContentLang("pt")}
+                    >
+                      {t("manage.langPt")}
+                    </button>
+                    <button
+                      type="button"
+                      className={`lang-toggle__btn${contentLang === "en" ? " is-active" : ""}`}
+                      onClick={() => setContentLang("en")}
+                    >
+                      {t("manage.langEn")}
+                    </button>
+                  </div>
+                </div>
+                <div
+                  className="content-fields-pt"
+                  hidden={contentLang !== "pt"}
+                >
+                  <Input
+                    nameField={t("manage.projectName")}
+                    type={"text"}
+                    icon={<LuPencil />}
+                    placeholder={t("manage.namePlaceholder")}
+                    {...register("name")}
+                  />
+                  <Input
+                    nameField={t("manage.shortDescription")}
+                    type={"text"}
+                    icon={<LuText />}
+                    placeholder={t("manage.shortDescPlaceholder")}
+                    {...register("shortDescription")}
+                  />
+                  <Textarea
+                    nameField={t("manage.description")}
+                    icon={<CgNotes />}
+                    placeholder={t("manage.descPlaceholder")}
+                    {...register("description")}
+                  />
+                </div>
+                <div
+                  className="content-fields-en"
+                  hidden={contentLang !== "en"}
+                >
+                  <Input
+                    nameField={t("manage.projectNameEn")}
+                    type={"text"}
+                    icon={<LuPencil />}
+                    placeholder={t("manage.namePlaceholderEn")}
+                    {...register("name_en")}
+                  />
+                  <Input
+                    nameField={t("manage.shortDescriptionEn")}
+                    type={"text"}
+                    icon={<LuText />}
+                    placeholder={t("manage.shortDescPlaceholderEn")}
+                    {...register("shortDescription_en")}
+                  />
+                  <Textarea
+                    nameField={t("manage.descriptionEn")}
+                    icon={<CgNotes />}
+                    placeholder={t("manage.descPlaceholderEn")}
+                    {...register("description_en")}
+                  />
+                </div>
                 <Input
-                  nameField={t("manage.shortDescription")}
+                  nameField={t("manage.deployLink")}
                   type={"text"}
-                  icon={<LuText />}
-                  placeholder={t("manage.shortDescPlaceholder")}
-                  {...register("shortDescription")}
-                />
-                <Textarea
-                  nameField={t("manage.description")}
-                  icon={<CgNotes />}
-                  placeholder={t("manage.descPlaceholder")}
-                  {...register("description")}
+                  icon={<FaLink />}
+                  placeholder={t("manage.deployPlaceholder")}
+                  {...register("link_deploy")}
                 />
                 <Input
                   nameField={t("manage.projectRepo")}
@@ -345,13 +458,6 @@ function ManageProject() {
                   icon={<FaGithub />}
                   placeholder={t("manage.repoPlaceholder")}
                   {...register("link_git")}
-                />
-                <Input
-                  nameField={t("manage.deployLink")}
-                  type={"text"}
-                  icon={<FaLink />}
-                  placeholder={t("manage.deployPlaceholder")}
-                  {...register("link_deploy")}
                 />
                 <Controller
                   name="techs"

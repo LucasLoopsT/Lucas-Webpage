@@ -21,6 +21,18 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    name_en: {
+        type: String,
+        default: "",
+    },
+    shortDescription_en: {
+        type: String,
+        default: "",
+    },
+    description_en: {
+        type: String,
+        default: "",
+    },
     techs: {
         type: [String],
         require: true

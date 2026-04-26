@@ -9,6 +9,7 @@ import Home from "./pages/Home/index.jsx";
 import ProjectView from "./pages/ProjectView";
 import Login from "./pages/Login/index.jsx";
 import ManageProject from "./pages/ManageProject/index.jsx";
+import NotFound from "./pages/NotFound/index.jsx";
 import ProtectedRoute from "./services/ProtectedRoute.jsx";
 
 const router = createHashRouter(
@@ -16,7 +17,6 @@ const router = createHashRouter(
     {
       path: "/",
       element: <App />,
-      errorElement: "",
       children: [
         {
           path: "/",
@@ -37,6 +37,10 @@ const router = createHashRouter(
         {
           path: "/projeto",
           element: <ProjectView />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

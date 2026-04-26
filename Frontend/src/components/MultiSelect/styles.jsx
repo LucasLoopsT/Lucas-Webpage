@@ -43,7 +43,7 @@ export const Placeholder = styled.span`
 
 export const Tag = styled.span`
   background: ${({ theme }) => theme.COLORS.color_2};
-  color: black;
+  color: ${({ theme }) => theme.COLORS.bg};
   padding: 3px 8px;
   border-radius: 15px;
   display: flex;
@@ -52,6 +52,7 @@ export const Tag = styled.span`
   font-size: 12px;
 
   button {
+    color: ${({ theme }) => theme.COLORS.bg};
     border: none;
     background: transparent;
     cursor: pointer;

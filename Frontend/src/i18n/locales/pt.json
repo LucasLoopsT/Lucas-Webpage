@@ -65,7 +65,16 @@
     "fetchError": "Erro ao buscar projetos.",
     "functionNotFound": "Função não encontrada",
     "projectProcessingError": "Ocorreu um erro ao processar o projeto.",
-    "created": "Criado: {{name}}"
+    "created": "Criado: {{name}}",
+    "contentLanguage": "Textos do projeto (idioma)",
+    "langPt": "PT",
+    "langEn": "EN",
+    "projectNameEn": "Nome do projeto (inglês)",
+    "shortDescriptionEn": "Descrição curta (inglês)",
+    "descriptionEn": "Descrição (inglês)",
+    "namePlaceholderEn": "Project X (em inglês)",
+    "shortDescPlaceholderEn": "Para que serve este projeto? (em inglês)",
+    "descPlaceholderEn": "Escreva mais sobre o projeto em inglês."
   },
   "projectView": {
     "seeRepo": "Ver o repositório",
@@ -74,5 +83,11 @@
   },
   "footer": {
     "copyright": "© {{year}} - "
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "O endereço pode estar incorreto ou a página não existe mais. Use uma das opções abaixo para continuar.",
+    "backHome": "Voltar à home",
+    "goBack": "Página anterior"
   }
 }

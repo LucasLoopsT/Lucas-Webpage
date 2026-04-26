@@ -12,7 +12,7 @@ function getInitialLanguage() {
   } catch {
     /* ignore */
   }
-  return "en";
+  return "pt";
 }
 
 i18n.use(initReactI18next).init({
@@ -21,7 +21,7 @@ i18n.use(initReactI18next).init({
     pt: { translation: pt },
   },
   lng: getInitialLanguage(),
-  fallbackLng: "en",
+  fallbackLng: "pt",
   interpolation: { escapeValue: false },
   react: { useSuspense: false },
 });

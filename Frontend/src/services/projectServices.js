@@ -2,35 +2,12 @@ import axios from "axios";
 
 const baseURL = "https://lucas-webpage.onrender.com";
 
-export function create(
-  token,
-  name,
-  preview,
-  priority,
-  shortDescription,
-  description,
-  techs,
-  link_git,
-  link_deploy,
-) {
-  const response = axios.post(
-    `${baseURL}/project/`,
-    {
-      name,
-      preview,
-      priority,
-      shortDescription,
-      description,
-      techs,
-      link_git,
-      link_deploy,
+export function create(token, payload) {
+  const response = axios.post(`${baseURL}/project/`, payload, {
+    headers: {
+      authorization: `Bearer ${token}`,
     },
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
+  });
   return response;
 }
 
@@ -44,36 +21,12 @@ export function findById(id) {
   return response;
 }
 
-export function update(
-  token,
-  id,
-  name,
-  preview,
-  priority,
-  shortDescription,
-  description,
-  techs,
-  link_git,
-  link_deploy,
-) {
-  const response = axios.patch(
-    `${baseURL}/project/${id}`,
-    {
-      name,
-      preview,
-      priority,
-      shortDescription,
-      description,
-      techs,
-      link_git,
-      link_deploy,
+export function update(token, id, payload) {
+  const response = axios.patch(`${baseURL}/project/${id}`, payload, {
+    headers: {
+      authorization: `Bearer ${token}`,
     },
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
+  });
   return response;
 }
 

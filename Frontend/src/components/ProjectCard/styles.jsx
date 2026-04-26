@@ -26,7 +26,7 @@ export const Container = styled.article`
 
   #details h2 {
     text-align: start;
-    color: black;
+    color: ${({ theme }) => theme.COLORS.HEADING_H1};
     transition: 200ms 0.1s ease;
     font-size: 25px;
   }
@@ -39,7 +39,8 @@ export const Container = styled.article`
 
     font-size: 20px;
     text-align: start;
-    color: black;
+    color: ${({ theme }) => theme.COLORS.HEADING_H1};
+    opacity: 0.7;
     transition: 200ms 0.1s ease;
   }
 
@@ -103,13 +104,13 @@ export const Container = styled.article`
   @media screen and (max-width: 450px) {
     #details h2,
     #details p {
-      color: ${({ theme }) => theme.COLORS.CARD_DETAIL_MOBILE};
+      color: ${({ theme }) => theme.COLORS.HEADING_H1};
     }
 
     &:hover {
       #details h2,
       #details p {
-        color: ${({ theme }) => theme.COLORS.color_1};
+        color: ${({ theme }) => theme.COLORS.color_1}!important;
       }
     }
   }
